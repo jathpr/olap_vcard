@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Card, CardTitle, CardBody, CardImg } from 'reactstrap';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="row">
+          <div className="col-12 col-md-6 m-2">
+            <Card>
+              <CardTitle>
+                Ольга Сергеевна Подгайская
+        </CardTitle>
+              <CardBody>
+                (род. 21 марта 1981 года, город Караганда, Казахстан) — композитор, органист, преподаватель музыкальных дисциплин. С 1996 живёт в Белоруссии. Автор симфонических произведений, сочинений для солистов, хора и оркестра, инструментальных ансамблей, музыки для театра и кино.
+        </CardBody>
+            </Card>
+          </div>
+          <div className="col-12 col-md-5 m-2">
+            <Card>
+              <CardImg width="100%" src='assets/img/face_main_big.jpg' alt='фото Ольги Подгайской'/>
+            </Card>
+          </div>
+        </div>
+
       </div>
     );
   }
