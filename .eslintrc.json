@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+    "extends": [
+      "prettier",
+      "airbnb",
+      "prettier/react",
+      "prettier/standard",
+      "plugin:prettier/recommended",
+      "plugin:jest/recommended"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
+  },
+    "rules": {
+        "import/first": [2, { "absolute-first": 0 }],
+        "react/prop-types": 0,
+        "react/jsx-filename-extension": [0]
+    },
+    "plugins": [
+      "prettier",
+      "jest"
+    ]
+  }
