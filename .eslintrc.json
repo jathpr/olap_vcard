@@ -1,26 +1,28 @@
 {
   "parser": "babel-eslint",
-    "extends": [
-      "prettier",
-      "airbnb",
-      "prettier/react",
-      "prettier/standard",
-      "plugin:prettier/recommended",
-      "plugin:jest/recommended"
-    ],
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "sourceType": "module"
-  },
-    "rules": {
-        "import/first": [2, { "absolute-first": 0 }],
-        "react/prop-types": 0,
-        "react/jsx-filename-extension": [0]
+  "extends": [
+    "prettier",
+    "airbnb",
+    "prettier/react",
+    "prettier/standard",
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "plugins": [
-      "prettier",
-      "jest"
-    ]
-  }
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "import/first": [2, { "absolute-first": 0 }],
+    "react/prop-types": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/destructuring-assignment": [1, "always", { "ignoreClassFields": true }]
+  },
+  "plugins": ["prettier", "jest"]
+}

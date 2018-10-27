@@ -1,5 +1,5 @@
 import React from 'react'
-import Article from '../ArticlePreview'
+import Article from '../Article'
 
 function News({ project, data }) {
   const isArticleConnectedWithProject = shownProject =>

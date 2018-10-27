@@ -17,28 +17,30 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      cHeader: {}, //c is for Content
-      cHome: null, //nul for not drawing, {} for drowing from local data
+      cHeader: {}, // c is for Content
+      cHome: null, // nul for not drawing, {} for drowing from local data
       cContacts: null,
       cBio: null,
       cConcert: null,
       cFilm: null,
       cNews: null,
-      cFooter: {},
+      // cFooter: {},
       cPlayer: null,
       cProject: null,
       locale: this.getLocale(),
       cAllMusic: null,
-      height: 200,
     }
     this.playerRef = React.createRef()
   }
 
+  componentDidMount() {
+    fetchData(this.state.locale).then(this.setData)
+  }
+
   browserLocale = () => {
     let lang
-
     if (navigator.languages && navigator.languages.length) {
-      lang = navigator.languages[0]
+      ;[lang] = navigator.languages
     } else if (navigator.userLanguage) {
       lang = navigator.userLanguage
     } else {
@@ -52,7 +54,7 @@ class App extends Component {
     let locale
 
     if (navigator.languages && navigator.languages.length) {
-      locale = navigator.languages[0]
+      ;[locale] = navigator.languages
     } else if (navigator.userLanguage) {
       locale = navigator.userLanguage
     } else {
@@ -69,17 +71,6 @@ class App extends Component {
     return 'en-US'
   }
 
-  // --data from CMS--
-  componentDidMount() {
-    fetchData(this.state.locale).then(this.setData)
-    // const height = this.playerEl.clientHeight;
-    // const DOMNode = ReactDOM.findDOMNode(this.playerRef.current);
-    this.setState({
-      height: this.playerRef.current && this.playerRef.current.clientHeight,
-    })
-    // console.log(this.playerRef.current.offsetHeight);
-  }
-
   setData = data => {
     this.setState({
       locale: data.lang,
@@ -92,109 +83,80 @@ class App extends Component {
       cFilm: data.mFilm,
       cNews: data.news,
       cPlayer: data.player,
-      cFooter: data.footer,
+      // cFooter: data.footer,
       cAllMusic: data.music,
     })
   }
   // --data from CMS--
 
-  //its possible work bcs fetch static and this geting from it. Mb add bind
+  // its possible work bcs fetch static and this geting from it. Mb add bind
   changeLang = lang => fetchData(lang).then(this.setData)
 
   render() {
+    const {
+      cHeader,
+      cHome,
+      cContacts,
+      cBio,
+      cConcert,
+      cFilm,
+      cNews,
+      cPlayer,
+      cProject,
+      locale,
+      cAllMusic,
+    } = this.state
+
     const ProjectNews = param => {
       let curentProject = null
-      console.log('curentProject')
-      console.log(curentProject)
-      if (this.state.cProject)
-        //in case of direct link
-        this.state.cProject.forEach(project => {
-          if (param.match.params.projectUrl === project.urlName)
-            curentProject = project
+      if (cProject)
+        // in case of direct link
+        cProject.forEach(project => {
+          if (param.match.params.projectUrl === project.urlName) curentProject = project
         })
-      console.log(curentProject)
-      return (
-        curentProject && (
-          <News data={this.state.cNews} project={curentProject} />
-        )
-      )
+      return curentProject && <News data={cNews} project={curentProject} />
     }
 
-    const ArticlePage = param => {
-      // if (this.state.cNews)
-      //in case of direct link check this.state.cNews
-      return (
-        this.state.cNews && (
-          <Article
-            data={
-              this.state.cNews.articles.filter(
-                article => article.urlName === param.match.params.articleUrl
-              )[0]
-            }
-            locale={this.state.locale}
-          />
-        )
+    // in case of direct link check cNews
+    const ArticlePage = param =>
+      cNews && (
+        <Article
+          data={
+            cNews.articles.filter(article => article.urlName === param.match.params.articleUrl)[0]
+          }
+          locale={locale}
+        />
       )
-      // return null
-    }
 
     return (
       <BrowserRouter>
         <div className="App">
-          <Header data={this.state.cHeader} onClick={this.changeLang} />
+          <Header data={cHeader} onClick={this.changeLang} />
           <div
             className="container"
             style={{
-              paddingBottom:
-                this.playerRef.current && this.playerRef.current.clientHeight,
+              paddingBottom: this.playerRef.current && this.playerRef.current.clientHeight,
             }}>
             <Switch>
-              <Route
-                path="/home"
-                component={() => <Home data={this.state.cHome} />}
-              />
-              <Route
-                path="/biography"
-                component={() => <Bio data={this.state.cBio} />}
-              />
-              <Route
-                path="/news"
-                component={() => <News data={this.state.cNews} />}
-              />
-              <Route
-                path="/concert_music"
-                component={() => <Music data={this.state.cConcert} />}
-              />
-              <Route
-                path="/film_music"
-                component={() => <Music data={this.state.cFilm} />}
-              />
-              <Route
-                path="/contacts"
-                component={() => <Contacts data={this.state.cContacts} />}
-              />
+              <Route path="/home" component={() => <Home data={cHome} />} />
+              <Route path="/biography" component={() => <Bio data={cBio} />} />
+              <Route path="/news" component={() => <News data={cNews} />} />
+              <Route path="/concert_music" component={() => <Music data={cConcert} />} />
+              <Route path="/film_music" component={() => <Music data={cFilm} />} />
+              <Route path="/contacts" component={() => <Contacts data={cContacts} />} />
               <Route
                 exact
                 path="/projects"
-                component={() => (
-                  <Projects
-                    data={this.state.cProject}
-                    locale={this.state.locale}
-                  />
-                )}
+                component={() => <Projects data={cProject} locale={locale} />}
               />
               <Route path="/projects/:projectUrl" component={ProjectNews} />
               <Route path="/articles/:articleUrl" component={ArticlePage} />
               <Redirect to="/home" />
             </Switch>
           </div>
-          {/* <Footer data={this.state.cFooter} /> */}
-          <Player
-            player={this.state.cPlayer}
-            src={this.state.cAllMusic}
-            playerRef={this.playerRef}
-          />
-          {/* <div style={{height:this.state.height}}></div> */}
+          {/* <Footer data={cFooter} /> */}
+          <Player player={cPlayer} src={cAllMusic} playerRef={this.playerRef} />
+          {/* <div style={{height:height}}></div> */}
         </div>
       </BrowserRouter>
     )

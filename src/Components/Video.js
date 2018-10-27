@@ -58,11 +58,3 @@ class Video extends Component {
 }
 
 export default Video
-
-// const videoSrc = "https://www.youtube.com/embed/" +
-//     props.video + "?autoplay=" +
-//     props.autoplay + "&rel=" +
-//     props.rel + "&modestbranding=" +
-//     props.modest + "&showinfo=" +
-//     props.info + "&iv_load_policy=" +
-//     '3';

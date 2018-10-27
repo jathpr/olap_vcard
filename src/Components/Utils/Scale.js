@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Scale extends Component {
-    render() {
-        return (
-            <g style={{
-                transformOrigin: '50% 50%',
-                transition: 'transform 0.5s',
-                transform: `scale(${this.props.isShow ? 1 : 0})`
-            }}>
-                {this.props.children}
-            </g>
-        )
-    }
+function Scale({ children, isShow }) {
+  return (
+    <g
+      style={{
+        transformOrigin: '50% 50%',
+        transition: 'transform 0.5s',
+        transform: `scale(${isShow ? 1 : 0})`,
+      }}>
+      {children}
+    </g>
+  )
 }
 
-export default Scale;
+export default Scale
