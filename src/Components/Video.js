@@ -5,6 +5,18 @@ import Playlist from './Playlist'
 const mod = (num, max) => (num + max) % max
 
 class Video extends Component {
+  playlist = [
+    {
+      src: `https:${this.props.data.fields.file.url}`,
+      label: this.props.data.fields.title,
+    },
+  ].concat(
+    this.props.videoList.map(video => ({
+      src: video.fields.url,
+      label: video.fields.title,
+    }))
+  )
+
   constructor(props) {
     super(props)
     this.state = {
@@ -33,7 +45,6 @@ class Video extends Component {
 
   render() {
     const { currentTrack, isPlaying } = this.state
-    const { playlist } = this.props
     return (
       <div className="media-player-wrapper">
         <VideoPlayer
@@ -48,7 +59,7 @@ class Video extends Component {
           onEnded={() => false && this.navigatePlaylist(1)}
         />
         <Playlist
-          tracks={playlist}
+          tracks={this.playlist}
           currentTrack={currentTrack}
           onTrackClick={this.handleTrackClick}
         />

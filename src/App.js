@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import Button from 'reactstrap/lib/Button'
 import Home from './Components/Pages/Home'
 import Bio from './Components/Pages/Bio'
 import News from './Components/Pages/News'
@@ -11,7 +12,39 @@ import Header from './Components/Header'
 import { fetchData } from './Components/Utils/FetchData'
 import './App.css'
 import Article from './Components/Pages/Article'
-import Player from './Components/Player/AudioPlayer'
+import AudioPlayer from './Components/Player/AudioPlayer'
+
+const AUDIO_PLAYER_HEIGHT = 60
+const HOME_PATH = '/home'
+
+const ChangeTracker = withRouter(
+  ({ location, showPlayer, cPlayer, isAudioPlaying, cAllMusic, onClick, onClose }) => (
+    <React.Fragment>
+      {!showPlayer && (
+        <Button
+          className="main-play-button"
+          style={
+            !(location.pathname === HOME_PATH)
+              ? { position: 'fixed', right: '5%', top: '90%' }
+              : null
+          }
+          // style={!(location.pathname === HOME_PATH) ? { transform: 'translate(0vw, 0vh)' } : null}
+          onClick={onClick}>
+          {cPlayer && (isAudioPlaying ? cPlayer.stop : cPlayer.listen)}
+        </Button>
+      )}
+      {showPlayer && (
+        <AudioPlayer
+          player={cPlayer}
+          src={cAllMusic}
+          playerRef={this.playerRef}
+          onClose={onClose}
+          autoplay
+        />
+      )}
+    </React.Fragment>
+  )
+)
 
 class App extends Component {
   constructor(props) {
@@ -29,8 +62,13 @@ class App extends Component {
       cProject: null,
       locale: this.getLocale(),
       cAllMusic: null,
+      showPlayer: false,
+      isAudioPlaying: false,
     }
     this.playerRef = React.createRef()
+    this.pathRef = React.createRef()
+    this.handlePlayerButton = this.handlePlayerButton.bind(this)
+    this.closePlayer = this.closePlayer.bind(this)
   }
 
   componentDidMount() {
@@ -92,6 +130,21 @@ class App extends Component {
   // its possible work bcs fetch static and this geting from it. Mb add bind
   changeLang = lang => fetchData(lang).then(this.setData)
 
+  handlePlayerButton() {
+    // const { isAudioPlaying } = this.state
+    this.setState({
+      // showPlayer: !isAudioPlaying || showPlayer,
+      showPlayer: true,
+      // isAudioPlaying: !isAudioPlaying,
+    })
+  }
+
+  closePlayer() {
+    this.setState({
+      showPlayer: false,
+    })
+  }
+
   render() {
     const {
       cHeader,
@@ -105,6 +158,8 @@ class App extends Component {
       cProject,
       locale,
       cAllMusic,
+      showPlayer,
+      isAudioPlaying,
     } = this.state
 
     const ProjectNews = param => {
@@ -129,16 +184,24 @@ class App extends Component {
       )
 
     return (
-      <BrowserRouter>
+      <BrowserRouter getUserConfirmation={this.getConfirmation}>
         <div className="App">
           <Header data={cHeader} onClick={this.changeLang} />
+          <ChangeTracker
+            showPlayer={showPlayer}
+            cPlayer={cPlayer}
+            isAudioPlaying={isAudioPlaying}
+            cAllMusic={cAllMusic}
+            onClick={this.handlePlayerButton}
+            onClose={this.closePlayer}
+          />
           <div
             className="container"
             style={{
-              paddingBottom: this.playerRef.current && this.playerRef.current.clientHeight,
+              paddingBottom: showPlayer && AUDIO_PLAYER_HEIGHT,
             }}>
             <Switch>
-              <Route path="/home" component={() => <Home data={cHome} />} />
+              <Route path={HOME_PATH} component={() => <Home data={cHome} />} />
               <Route path="/biography" component={() => <Bio data={cBio} />} />
               <Route path="/news" component={() => <News data={cNews} />} />
               <Route path="/concert_music" component={() => <Music data={cConcert} />} />
@@ -155,7 +218,6 @@ class App extends Component {
             </Switch>
           </div>
           {/* <Footer data={cFooter} /> */}
-          <Player player={cPlayer} src={cAllMusic} playerRef={this.playerRef} />
           {/* <div style={{height:height}}></div> */}
         </div>
       </BrowserRouter>

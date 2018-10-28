@@ -19,18 +19,6 @@ function Music({ data }) {
       </li>
     ))
 
-    const playlist = [
-      {
-        src: `https:${data.video.fields.file.url}`,
-        label: data.video.fields.title,
-      },
-    ].concat(
-      data.videoList.map(video => ({
-        src: video.fields.url,
-        label: video.fields.title,
-      }))
-    )
-
     return (
       <Fragment>
         <div className="row">
@@ -39,7 +27,7 @@ function Music({ data }) {
             <ul>{listAudio}</ul>
           </div>
           <div className="col-12 col-md-5 m-auto">
-            {data.video && <Video data={data.video} playlist={playlist} />}
+            {data.video && <Video data={data.video} videoList={data.videoList} />}
           </div>
         </div>
       </Fragment>

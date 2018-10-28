@@ -1,55 +1,74 @@
 .video-list {
-    cursor:pointer;
+  cursor: pointer;
 }
 
 .video-list:hover {
-    color:blue;
+  color: blue;
 }
 
 .navbar-dark {
-    background-color: #512DA8;
+  background-color: #512da8;
 }
 
 .dropdown-menu {
-    background-color: #512DA8;
+  background-color: #512da8;
 }
 
 .dropdown-item {
-    color: white
+  color: white;
 }
 
-.footer{
-    background-color: #D1C4E9;
-    margin:0px auto;
-    padding: 20px 0px 20px 0px;
-    width: 100%;
+.footer {
+  background-color: #d1c4e9;
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px;
+  width: 100%;
 }
 
-.row{
-    padding: 10px 0px 10px 0px;
-    /* margin-left:0; */
-    /* margin-right:0; */
+.row {
+  padding: 10px 0px 10px 0px;
+  /* margin-left:0; */
+  /* margin-right:0; */
 }
 
 .navbar-fixed-left {
-    width: 17%;
-    position: fixed;
-    border-radius: 0;
-    height: 100%;
-    padding: 0;
-  }
-  
-  .navbar-fixed-left .navbar-nav > li {
-    float: none;  /* Cancel default li float: left */
-    width: 139px;
-  }
-  
-  .navbar-fixed-left + .container {
-    padding-left: 160px;
-  }
-  
-  /* On using dropdown menu (To right shift popuped) */
-  .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-    margin-top: -50px;
-    margin-left: 140px;
-  }
+  width: 17%;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+  padding: 0;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none; /* Cancel default li float: left */
+  width: 139px;
+}
+
+.navbar-fixed-left + .container {
+  padding-left: 160px;
+}
+
+/* On using dropdown menu (To right shift popuped) */
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+  margin-top: -50px;
+  margin-left: 140px;
+}
+
+.main-play-button {
+  position: absolute;
+  top: 60%;
+  z-index: 100;
+  /* left: 30%; */
+  right: 60%;
+  transition: right 0.5s, top 0.5s;
+  transform-origin: 100% 100%;
+  /* transition: top 0.5s; */
+  /* transform: translate(30vw, 50vh); */
+}
+
+.other-play-button {
+  position: absolute;
+  z-index: 100;
+  transition: 'transform 0.5s';
+  transform: translate(0vw, 0vh);
+}

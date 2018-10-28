@@ -9,21 +9,23 @@ function Home({ data }) {
     const url = `https:${data.photo.fields.file.url}?fm=jpg&fl=progressive&w=400`
     const alt = data.photo.fields.description
     return (
-      <div className="row">
-        <div className="col-12 col-md-7 p-2">
-          <Card>
-            <CardTitle>
-              {data.name} - {data.fewWords}
-            </CardTitle>
-            <CardBody>{data.shortBio}</CardBody>
-          </Card>
+      <React.Fragment>
+        <div className="row">
+          <div className="col-12 col-md-4 p-2 order-md-last">
+            <Card>
+              <CardImg width="100%" src={url} alt={alt} />
+            </Card>
+          </div>
+          <div className="col-12 col-md-7 p-2">
+            <Card>
+              <CardTitle>
+                {data.name} - {data.fewWords}
+              </CardTitle>
+              <CardBody>{data.shortBio}</CardBody>
+            </Card>
+          </div>
         </div>
-        <div className="col-12 col-md-4 p-2">
-          <Card>
-            <CardImg width="100%" src={url} alt={alt} />
-          </Card>
-        </div>
-      </div>
+      </React.Fragment>
     )
   }
   return null

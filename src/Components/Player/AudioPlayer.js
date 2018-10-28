@@ -17,7 +17,7 @@ class AudioPlayer extends Component {
     super(props)
     this.state = {
       currentTrack: 0,
-      isPlaying: false,
+      isPlaying: props.autoplay,
     }
   }
 
@@ -40,7 +40,7 @@ class AudioPlayer extends Component {
   }
 
   render() {
-    const { src, playerRef } = this.props
+    const { src, playerRef, onClose } = this.props
     const { currentTrack, isPlaying } = this.state
 
     return (
@@ -81,6 +81,9 @@ class AudioPlayer extends Component {
                 <Duration className="media-control media-control--duration d-none d-sm-block" />
                 <MuteUnmute className="media-control media-control--mute-unmute" />
                 <Volume className="media-control media-control--volume d-none d-sm-block" />
+                <button type="button" onClick={onClose}>
+                  X
+                </button>
               </div>
             }
           </div>
