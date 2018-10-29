@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route, Redirect, withRouter } from 'react-router-dom'
-import Button from 'reactstrap/lib/Button'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Home from './Components/Pages/Home'
 import Bio from './Components/Pages/Bio'
 import News from './Components/Pages/News'
@@ -8,43 +7,12 @@ import Music from './Components/Pages/Music'
 import Contacts from './Components/Pages/Contacts'
 import Projects from './Components/Pages/Projects'
 import Header from './Components/Header'
-// import Footer from './Components/Footer';
 import { fetchData } from './Components/Utils/FetchData'
 import './App.css'
 import Article from './Components/Pages/Article'
 import AudioPlayer from './Components/Player/AudioPlayer'
-
-const AUDIO_PLAYER_HEIGHT = 60
-const HOME_PATH = '/home'
-
-const ChangeTracker = withRouter(
-  ({ location, showPlayer, cPlayer, isAudioPlaying, cAllMusic, onClick, onClose }) => (
-    <React.Fragment>
-      {!showPlayer && (
-        <Button
-          className="main-play-button"
-          style={
-            !(location.pathname === HOME_PATH)
-              ? { position: 'fixed', right: '5%', top: '90%' }
-              : null
-          }
-          // style={!(location.pathname === HOME_PATH) ? { transform: 'translate(0vw, 0vh)' } : null}
-          onClick={onClick}>
-          {cPlayer && (isAudioPlaying ? cPlayer.stop : cPlayer.listen)}
-        </Button>
-      )}
-      {showPlayer && (
-        <AudioPlayer
-          player={cPlayer}
-          src={cAllMusic}
-          playerRef={this.playerRef}
-          onClose={onClose}
-          autoplay
-        />
-      )}
-    </React.Fragment>
-  )
-)
+import ListenButtonWithRouer from './Components/ListenButtonWithRouer'
+import getLocale from './Components/Utils/getLocale'
 
 class App extends Component {
   constructor(props) {
@@ -57,15 +25,12 @@ class App extends Component {
       cConcert: null,
       cFilm: null,
       cNews: null,
-      // cFooter: {},
       cPlayer: null,
       cProject: null,
-      locale: this.getLocale(),
+      locale: getLocale(),
       cAllMusic: null,
       showPlayer: false,
-      isAudioPlaying: false,
     }
-    this.playerRef = React.createRef()
     this.pathRef = React.createRef()
     this.handlePlayerButton = this.handlePlayerButton.bind(this)
     this.closePlayer = this.closePlayer.bind(this)
@@ -73,40 +38,6 @@ class App extends Component {
 
   componentDidMount() {
     fetchData(this.state.locale).then(this.setData)
-  }
-
-  browserLocale = () => {
-    let lang
-    if (navigator.languages && navigator.languages.length) {
-      ;[lang] = navigator.languages
-    } else if (navigator.userLanguage) {
-      lang = navigator.userLanguage
-    } else {
-      lang = navigator.language
-    }
-
-    return lang
-  }
-
-  getLocale = () => {
-    let locale
-
-    if (navigator.languages && navigator.languages.length) {
-      ;[locale] = navigator.languages
-    } else if (navigator.userLanguage) {
-      locale = navigator.userLanguage
-    } else {
-      locale = navigator.language
-    }
-
-    if (
-      locale.indexOf('ru') >= 0 ||
-      locale.indexOf('Ru') >= 0 ||
-      locale.indexOf('RU') >= 0 ||
-      locale.indexOf('be') === 0
-    )
-      return 'ru'
-    return 'en-US'
   }
 
   setData = data => {
@@ -121,21 +52,16 @@ class App extends Component {
       cFilm: data.mFilm,
       cNews: data.news,
       cPlayer: data.player,
-      // cFooter: data.footer,
       cAllMusic: data.music,
     })
   }
   // --data from CMS--
 
-  // its possible work bcs fetch static and this geting from it. Mb add bind
   changeLang = lang => fetchData(lang).then(this.setData)
 
   handlePlayerButton() {
-    // const { isAudioPlaying } = this.state
     this.setState({
-      // showPlayer: !isAudioPlaying || showPlayer,
       showPlayer: true,
-      // isAudioPlaying: !isAudioPlaying,
     })
   }
 
@@ -159,7 +85,6 @@ class App extends Component {
       locale,
       cAllMusic,
       showPlayer,
-      isAudioPlaying,
     } = this.state
 
     const ProjectNews = param => {
@@ -187,21 +112,18 @@ class App extends Component {
       <BrowserRouter getUserConfirmation={this.getConfirmation}>
         <div className="App">
           <Header data={cHeader} onClick={this.changeLang} />
-          <ChangeTracker
+          <ListenButtonWithRouer
             showPlayer={showPlayer}
             cPlayer={cPlayer}
-            isAudioPlaying={isAudioPlaying}
-            cAllMusic={cAllMusic}
             onClick={this.handlePlayerButton}
-            onClose={this.closePlayer}
           />
           <div
             className="container"
             style={{
-              paddingBottom: showPlayer && AUDIO_PLAYER_HEIGHT,
+              paddingBottom: showPlayer && `${process.env.REACT_APP_AUDIO_HEIGHT}px`,
             }}>
             <Switch>
-              <Route path={HOME_PATH} component={() => <Home data={cHome} />} />
+              <Route path={process.env.REACT_APP_HOME} component={() => <Home data={cHome} />} />
               <Route path="/biography" component={() => <Bio data={cBio} />} />
               <Route path="/news" component={() => <News data={cNews} />} />
               <Route path="/concert_music" component={() => <Music data={cConcert} />} />
@@ -217,8 +139,9 @@ class App extends Component {
               <Redirect to="/home" />
             </Switch>
           </div>
-          {/* <Footer data={cFooter} /> */}
-          {/* <div style={{height:height}}></div> */}
+          {showPlayer && (
+            <AudioPlayer player={cPlayer} src={cAllMusic} onClose={this.closePlayer} autoplay />
+          )}
         </div>
       </BrowserRouter>
     )

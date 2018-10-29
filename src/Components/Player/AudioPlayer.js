@@ -40,7 +40,7 @@ class AudioPlayer extends Component {
   }
 
   render() {
-    const { src, playerRef, onClose } = this.props
+    const { src, onClose } = this.props
     const { currentTrack, isPlaying } = this.state
 
     return (
@@ -61,7 +61,9 @@ class AudioPlayer extends Component {
               />
             )}
             {
-              <div className="media-controls" ref={playerRef}>
+              <div
+                className="media-controls"
+                style={{ height: `${process.env.REACT_APP_AUDIO_HEIGHT}px` }}>
                 <PrevTrack
                   className="media-control media-control--prev-track"
                   onClick={this.handlePrevTrack}

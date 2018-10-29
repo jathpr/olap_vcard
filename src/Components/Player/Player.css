@@ -417,6 +417,10 @@ input[type='range']::-webkit-slider-thumb {
   text-align: center;
 }
 
+.media-playlist-button {
+  cursor: pointer;
+}
+
 .media-playlist-button:focus {
   outline: none;
 }
