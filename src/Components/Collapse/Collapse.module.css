@@ -1,0 +1,21 @@
+@value collapse-height: 400px;
+
+.collapse__container {
+  max-height: 0;
+  transition: max-height 0.35s ease-out;
+  overflow: hidden;
+  height: auto;
+}
+
+.collapse__body {
+  overflow: auto;
+  max-height: collapse-height;
+}
+
+.collapse_shown {
+  max-height: collapse-height;
+}
+
+.collapse_hide {
+  max-height: 0;
+}

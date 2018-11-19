@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import Home from './Components/Pages/Home'
-import Bio from './Components/Pages/Bio'
-import News from './Components/Pages/News'
-import Music from './Components/Pages/Music'
-import Contacts from './Components/Pages/Contacts'
-import Projects from './Components/Pages/Projects'
+import Home from './Components/Routes/Home/Home'
+import Biography from './Components/Routes/Biography/Biography'
+import News from './Components/Routes/News'
+import Music from './Components/Routes/Music'
+import Contacts from './Components/Routes/Contacts'
+import Projects from './Components/Routes/Projects'
 import Header from './Components/Header'
 import { fetchData } from './Components/Utils/FetchData'
 import './App.css'
-import Article from './Components/Pages/Article'
+import Article from './Components/Routes/Article'
 import AudioPlayer from './Components/Player/AudioPlayer'
 import ListenButtonWithRouer from './Components/ListenButtonWithRouer'
 import getLocale from './Components/Utils/getLocale'
@@ -124,7 +124,7 @@ class App extends Component {
             }}>
             <Switch>
               <Route path={process.env.REACT_APP_HOME} component={() => <Home data={cHome} />} />
-              <Route path="/biography" component={() => <Bio data={cBio} />} />
+              <Route path="/biography" component={() => cBio && <Biography data={cBio} />} />
               <Route path="/news" component={() => <News data={cNews} />} />
               <Route path="/concert_music" component={() => <Music data={cConcert} />} />
               <Route path="/film_music" component={() => <Music data={cFilm} />} />

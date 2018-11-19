@@ -6,7 +6,9 @@
     "prettier/react",
     "prettier/standard",
     "plugin:prettier/recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:flowtype/recommended", 
+    "plugin:react/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -24,5 +26,5 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/destructuring-assignment": [1, "always", { "ignoreClassFields": true }]
   },
-  "plugins": ["prettier", "jest"]
+  "plugins": ["prettier", "jest", "flowtype"]
 }
