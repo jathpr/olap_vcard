@@ -26,5 +26,12 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/destructuring-assignment": [1, "always", { "ignoreClassFields": true }]
   },
-  "plugins": ["prettier", "jest", "flowtype"]
+  "plugins": ["prettier", "jest", "flowtype"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
 }
