@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Collapse.module.css'
+import styles from './collapse.module.css'
 
 function Collapse({ toggler, children }) {
   const childrenWithProps = React.Children.map(children, child =>

@@ -1,0 +1,37 @@
+@value white-full, black-dark from "styles/share/colors.css";
+
+.image {
+  composes: grid__main from global;
+  width: 100%;
+  object-fit: cover;
+  height: 100vh;
+}
+
+.text {
+  font-family: sans-serif;
+  font-size: 36px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 3.6px;
+  color: black-dark;
+  word-spacing: 100vw;
+}
+
+.text__name {
+  composes: grid__left-from-middle from global;
+  font-size: 36px;
+  letter-spacing: 3.6px;
+  color: black-dark;
+  justify-self: end;
+  text-align: end;
+}
+
+.text__about {
+  composes: grid__right-from-middle from global;
+  font-size: 18px;
+  letter-spacing: 1.8px;
+  color: white-full;
+  margin-top: 0.4em;
+}

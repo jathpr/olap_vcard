@@ -1,0 +1,38 @@
+@value black-full, link-hover from "styles/share/colors.css";
+
+.header {
+  composes: grid__header from global;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav_link {
+  background: none !important;
+  border: none;
+  cursor: pointer;
+  display: block;
+  padding: 1rem 1rem;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.7;
+  letter-spacing: 1.8px;
+  color: black-full;
+  text-align: left;
+}
+
+.nav_link:hover {
+  text-decoration: underline;
+  color: link-hover;
+}

@@ -1,12 +1,10 @@
 // @flow
 
 import React from 'react'
-import Card from 'reactstrap/lib/Card'
-import CardBody from 'reactstrap/lib/CardBody'
-import CardImg from 'reactstrap/lib/CardImg'
-import CardTitle from 'reactstrap/lib/CardTitle'
+import styles from './home.module.css'
 
 type Props = {
+  className: string,
   data: {
     fewWords: string,
     name: string,
@@ -26,26 +24,15 @@ type Props = {
 
 function Home({ data }: Props) {
   if (data) {
-    const url = `https:${data.photo.fields.file.url}?fm=jpg&fl=progressive&w=400`
+    const url = `https:${data.photo.fields.file.url}?fm=jpg&fl=progressive&w=1200`
     const alt = data.photo.fields.description
     return (
-      <React.Fragment>
-        <div className="row">
-          <div className="col-12 col-md-4 p-2 order-md-last">
-            <Card>
-              <CardImg width="100%" src={url} alt={alt} />
-            </Card>
-          </div>
-          <div className="col-12 col-md-7 p-2">
-            <Card>
-              <CardTitle>
-                {data.name} - {data.fewWords}
-              </CardTitle>
-              <CardBody>{data.shortBio}</CardBody>
-            </Card>
-          </div>
-        </div>
-      </React.Fragment>
+      <>
+        <img className={styles.image} src={url} alt={alt} />
+        <div className={`${styles.text} ${styles.text__name}`}>{data.name}</div>
+        <div className={`${styles.text} ${styles.text__about}`}>{data.fewWords}</div>
+        {/* <p>{data.shortBio}</p> */}
+      </>
     )
   }
   return null
