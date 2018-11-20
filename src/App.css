@@ -67,9 +67,10 @@
   transform-origin: 100% 100%;
 }
 
-@value colors: "./Styles/variables.css";
-@value cool-grey gunmetal dark from "./Styles/variables.css";
+/* @value colors: "./Styles/variables.css"; */
+@value cool-grey gunmetal dark from "styles/share/colors.css";
 
 .App {
   background-color: cool-grey;
+  color: #0c0c0c;
 }

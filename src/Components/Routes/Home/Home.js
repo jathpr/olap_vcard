@@ -1,10 +1,30 @@
+// @flow
+
 import React from 'react'
 import Card from 'reactstrap/lib/Card'
 import CardBody from 'reactstrap/lib/CardBody'
 import CardImg from 'reactstrap/lib/CardImg'
 import CardTitle from 'reactstrap/lib/CardTitle'
 
-function Home({ data }) {
+type Props = {
+  data: {
+    fewWords: string,
+    name: string,
+    shortBio: string,
+    photo: {
+      fields: {
+        file: {
+          url: string,
+        },
+        title: string,
+        description: string,
+      },
+      sys: {},
+    },
+  },
+}
+
+function Home({ data }: Props) {
   if (data) {
     const url = `https:${data.photo.fields.file.url}?fm=jpg&fl=progressive&w=400`
     const alt = data.photo.fields.description

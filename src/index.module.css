@@ -1,0 +1,6 @@
+@import 'http://fonts.fontstorage.com/import/bitter.css';
+
+@font-face {
+  font-family: 'Titillium Ru Bold';
+  src: local('Titillium Ru Bold'), url(Fonts/Titillium_web_rus.ttf) format('truetype');
+}

@@ -1,5 +1,7 @@
 @value collapse-height: 400px;
 
+/* @import '../../styles/share/typography.css'; */
+
 .collapse__container {
   max-height: 0;
   transition: max-height 0.35s ease-out;
@@ -10,6 +12,10 @@
 .collapse__body {
   overflow: auto;
   max-height: collapse-height;
+
+  /* composes: Text-Style from '../../styles/share/typography.css'; */
+
+  /* font-family: 'Titillium Ru Bold', fantasy; */
 }
 
 .collapse_shown {
