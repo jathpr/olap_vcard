@@ -1,0 +1,23 @@
+@value black-full from "styles/share/colors.css";
+
+.listen-button {
+  composes: button__empty from global;
+  position: fixed;
+  top: 10%;
+  z-index: 100;
+  left: 13%;
+  /* transition: right 0.5s, top 0.5s;
+  transform-origin: 100% 100%; */
+}
+
+.listen-button__text {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 10px;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: black-full;
+}

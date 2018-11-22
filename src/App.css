@@ -8,16 +8,6 @@
   color: blue;
 }
 
-.main-play-button {
-  display: none;
-  position: absolute;
-  top: 60%;
-  z-index: 100;
-  right: 60%;
-  transition: right 0.5s, top 0.5s;
-  transform-origin: 100% 100%;
-}
-
 .App {
   /* @value colors: "./Styles/variables.css"; */
 }

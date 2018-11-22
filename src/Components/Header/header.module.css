@@ -1,7 +1,10 @@
 @value black-full, link-hover from "styles/share/colors.css";
+@value header-width from "styles/share/data.css";
 
 .header {
-  composes: grid__header from global;
+  position: fixed;
+  width: header-width;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -16,9 +19,7 @@
 }
 
 .nav_link {
-  background: none !important;
-  border: none;
-  cursor: pointer;
+  composes: button__empty button__link from global;
   display: block;
   padding: 1rem 1rem;
   font-family: sans-serif;
@@ -30,9 +31,26 @@
   letter-spacing: 1.8px;
   color: black-full;
   text-align: left;
+  text-decoration: underline;
 }
 
-.nav_link:hover {
-  text-decoration: underline;
-  color: link-hover;
+@value dark, white-full from "styles/share/colors.css";
+@value lang-button-side-size: 50px;
+
+.lang__button {
+  composes: button__empty button__link from global;
+  font-family: 'Open Sans', sans-serif;
+  color: white-full;
+  background-color: dark;
+  height: lang-button-side-size;
+  width: lang-button-side-size;
+}
+
+.lang__container {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  display: flex;
+  justify-content: space-between;
+  width: calc(lang-button-side-size * 2 + 10px);
 }

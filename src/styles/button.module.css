@@ -1,7 +1,0 @@
-@value black-full from "./Styles/variables.css";
-
-.button {
-  width: 71px;
-  height: 17px;
-  color: black-full;
-}

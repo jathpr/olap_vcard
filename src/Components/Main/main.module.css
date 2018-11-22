@@ -1,39 +1,29 @@
 @value grey-cool from "styles/share/colors.css";
+@value header-width from "styles/share/data.css";
 
 .grid__wrapper {
   display: grid;
-  grid-template-columns: 1fr 0.5fr 1.5fr;
-  grid-template-rows: 10% 1fr;
+  grid-template-columns: header-width 0.5fr 1.5fr;
+  grid-template-rows: 1fr 10%;
   grid-template-areas: 'header main main' 'header main main';
   height: 100vh;
 }
 
-:global .grid__header {
+.grid__header {
   grid-area: header;
   background-color: grey-cool;
   z-index: 8;
 }
 
-:global .grid__main {
+.grid__main {
   grid-area: main;
   z-index: 8;
+  position: relative;
+  height: 100vh;
 }
 
-:global .grid__player {
+.grid__player {
   z-index: 11;
   grid-column: 1 / 4;
-  grid-row: 1 / 2;
-}
-
-:global .grid__left-from-middle {
-  z-index: 9;
-  pointer-events: none;
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-}
-
-:global .grid__right-from-middle {
-  z-index: 9;
-  grid-column: 2 / 3;
   grid-row: 2 / 3;
 }

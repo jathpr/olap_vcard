@@ -28,9 +28,9 @@ function Home({ data }: Props) {
     const alt = data.photo.fields.description
     return (
       <>
-        <img className={styles.image} src={url} alt={alt} />
         <div className={`${styles.text} ${styles.text__name}`}>{data.name}</div>
         <div className={`${styles.text} ${styles.text__about}`}>{data.fewWords}</div>
+        <img className={styles.image} src={url} alt={alt} />
         {/* <p>{data.shortBio}</p> */}
       </>
     )

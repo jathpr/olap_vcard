@@ -1,0 +1,11 @@
+@value link-hover from "./share/colors.css";
+
+.button__empty {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button__link:hover {
+  color: link-hover;
+}

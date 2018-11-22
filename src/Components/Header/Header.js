@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import styles from './header.module.css'
 
 type Props = {
+  className: string,
   onClick: Function,
   data: {
     home: string,
@@ -20,11 +21,11 @@ type Props = {
   },
 }
 
-function Header({ data, onClick }: Props) {
+function Header({ data, onClick, className }: Props) {
   const [isMusicOpen, setIsMusicOpen] = useState(false)
 
   return (
-    <header className={styles.header}>
+    <header className={`${className} ${styles.header}`}>
       <nav className={styles.nav}>
         <NavLink className={styles.nav_link} to="/home">
           {data.home}
@@ -58,12 +59,14 @@ function Header({ data, onClick }: Props) {
           {data.contacts}
         </NavLink>
       </nav>
-      <button type="button" onClick={() => onClick('ru')}>
-        {data.russian}
-      </button>
-      <button type="button" onClick={() => onClick('en-US')} className="ml-2">
-        {data.english}
-      </button>
+      <div className={styles.lang__container}>
+        <button type="button" onClick={() => onClick('ru')} className={`${styles.lang__button}`}>
+          {data.russian}
+        </button>
+        <button type="button" onClick={() => onClick('en-US')} className={`${styles.lang__button}`}>
+          {data.english}
+        </button>
+      </div>
     </header>
   )
 }
