@@ -2,16 +2,20 @@
 
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 import './App.css'
-import Main from './Components/Main/Main'
+import Main from './Components/Main'
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Main />
-      </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <div className="App">
+          <Main />
+        </div>
+      </BrowserRouter>
+    </Provider>
   )
 }
 

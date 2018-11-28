@@ -5,7 +5,9 @@ const client = contentful.createClient({
   accessToken: process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN,
 })
 
-const IMG_MAIN = '2XzkUnn5mgq4UIAaseSY4o'
+const SYNC_TOKEN = 'contentfulSyncToken'
+const SYNC_DATA = 'contentfulEntyres'
+// const IMG_MAIN = '2XzkUnn5mgq4UIAaseSY4o'
 const CLASS_HEADER = '1ToqbomTMAwKgWyKmYEMuO'
 const CLASS_HOME = '6urjXMranKKMyiMCssgMGM'
 const CLASS_PLAYER = 'GjiZ5yg5SmAQSwOuYoUqg'
@@ -17,7 +19,34 @@ const CLASS_MUSIC_CONCERT = '3Z3hzACNocwS8aIgeUeKci'
 const CLASS_MUSIC_FILM = '63naUalNwAU606mUSciaAy'
 const CLASS_ARTICLES = 'article'
 
+function getDataFromStore() {
+  const syncToken = localStorage.getItem(SYNC_TOKEN)
+  const syncData = localStorage.getItem(SYNC_DATA)
+  if (!(syncToken && syncData)) {
+    return client.sync({ initial: true, type: 'Entry' }).then(response => {
+      const { entries } = JSON.parse(response.stringifySafe())
+      localStorage.setItem(SYNC_TOKEN, response.nextSyncToken)
+      localStorage.setItem(SYNC_DATA, JSON.stringify(entries))
+      return entries
+    })
+  }
+  return client
+    .sync({ nextSyncToken: syncToken })
+    .then(({ entries, deletedEntries, nextSyncToken }) => {
+      const newData = JSON.parse(syncData)
+      if (entries.length > 0) {
+        localStorage.setItem(SYNC_DATA, newData)
+      }
+      if (deletedEntries.length > 0) {
+        localStorage.setItem(SYNC_DATA, newData)
+      }
+      localStorage.setItem(SYNC_TOKEN, nextSyncToken)
+      return newData
+    })
+}
+
 export function fetchData(lang) {
+  getDataFromStore().then(res => console.log(res))
   return client.getEntries({ locale: lang }).then(response => {
     let navi
     let main
@@ -88,14 +117,6 @@ export function fetchData(lang) {
   })
 }
 
-export function fetchAssets(lang) {
-  return client.getAssets({ locale: lang }).then(response => {
-    let mainPhoto
-    response.items.forEach(entry => {
-      if (entry.sys.id === IMG_MAIN) {
-        mainPhoto = entry.fields
-      }
-    })
-    return mainPhoto
-  })
+export function fetchHeader(lang) {
+  return client.getEntry(CLASS_HEADER, { locale: lang }).then(() => ({}))
 }

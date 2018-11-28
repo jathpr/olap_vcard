@@ -6,11 +6,11 @@ import SeekBar from 'react-media-player/lib/controls/SeekBar'
 import Duration from 'react-media-player/lib/controls/Duration'
 import Volume from 'react-media-player/lib/controls/Volume'
 import keyboardControls from 'react-media-player/lib/utils/keyboard-controls'
-import PlayPause from './PlayPause'
-import MuteUnmute from './MuteUnmute'
-import PrevTrack from './PrevTrack'
-import NextTrack from './NextTrack'
-import './Player.css'
+import PlayPause from '../PlayPause'
+import MuteUnmute from '../MuteUnmute'
+import PrevTrack from '../PrevTrack'
+import NextTrack from '../NextTrack'
+import '../Player.css'
 
 class AudioPlayer extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class AudioPlayer extends Component {
   }
 
   render() {
-    const { src, onClose, className } = this.props
+    const { src, className, togglePlayer } = this.props
     const { currentTrack, isPlaying } = this.state
 
     return (
@@ -84,7 +84,7 @@ class AudioPlayer extends Component {
                 <Duration className="media-control media-control--duration d-none d-sm-block" />
                 <MuteUnmute className="media-control media-control--mute-unmute" />
                 <Volume className="media-control media-control--volume d-none d-sm-block" />
-                <button type="button" onClick={onClose}>
+                <button type="button" onClick={() => togglePlayer(false)}>
                   X
                 </button>
               </div>

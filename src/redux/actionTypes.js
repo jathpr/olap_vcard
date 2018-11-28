@@ -1,0 +1,6 @@
+export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE'
+export const TOGGLE_PLAYER = 'TOGGLE_PLAYER'
+export const DATA_LOADING = 'DATA_LOADING'
+export const DATA_FAILED = 'DATA_FAILED'
+export const TRANSLATE_DATA = 'TRANSLATE_DATA'
+export const ADD_RAW_DATA = 'ADD_RAW_DATA'

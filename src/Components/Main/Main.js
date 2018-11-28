@@ -7,71 +7,23 @@ import Music from '../Routes/Music'
 import Contacts from '../Routes/Contacts'
 import Projects from '../Routes/Projects'
 import Header from '../Header/Header'
-import { fetchData } from '../Utils/FetchData'
 import Article from '../Routes/Article'
 import AudioPlayer from '../Player/AudioPlayer'
 import ListenButtonWithRouer from '../ListenButton/ListenButtonWithRouer'
-import getLocale from '../Utils/getLocale'
 import styles from './main.module.css'
 
 class Main extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      cHeader: {}, // c is for Content
-      cHome: null, // nul for not drawing, {} for drowing from local data
-      cContacts: null,
-      cBio: null,
-      cConcert: null,
-      cFilm: null,
-      cNews: null,
-      cPlayer: null,
-      cProject: null,
-      locale: getLocale(),
-      cAllMusic: null,
-      showPlayer: false,
-    }
-    this.pathRef = React.createRef()
-    this.handlePlayerButton = this.handlePlayerButton.bind(this)
-    this.closePlayer = this.closePlayer.bind(this)
-  }
-
   componentDidMount() {
-    fetchData(this.state.locale).then(this.setData)
+    this.props.fetchContent()
   }
 
-  setData = data => {
-    this.setState({
-      locale: data.lang,
-      cHeader: data.navi,
-      cHome: data.main,
-      cBio: data.bio,
-      cContacts: data.contacts,
-      cProject: data.projects,
-      cConcert: data.mConcert,
-      cFilm: data.mFilm,
-      cNews: data.news,
-      cPlayer: data.player,
-      cAllMusic: data.music,
-    })
-  }
-  // --data from CMS--
-
-  changeLang = lang => fetchData(lang).then(this.setData)
-
-  handlePlayerButton() {
-    this.setState({
-      showPlayer: true,
-    })
-  }
-
-  closePlayer() {
-    this.setState({
-      showPlayer: false,
-    })
+  changeLang = lang => {
+    this.props.changeLanguage(lang)
   }
 
   render() {
+    const { data, language, showPlayer, togglePlayer } = this.props
+    if (!data) return <div />
     const {
       cHeader,
       cHome,
@@ -82,10 +34,8 @@ class Main extends Component {
       cNews,
       cPlayer,
       cProject,
-      locale,
       cAllMusic,
-      showPlayer,
-    } = this.state
+    } = data
 
     const ProjectNews = param => {
       let curentProject = null
@@ -104,24 +54,28 @@ class Main extends Component {
           data={
             cNews.articles.filter(article => article.urlName === param.match.params.articleUrl)[0]
           }
-          locale={locale}
+          locale={language}
         />
       )
 
     return (
       <div className={styles.grid__wrapper}>
-        <Header data={cHeader} onClick={this.changeLang} className={styles.grid__header} />
+        {cHeader && (
+          <Header data={cHeader} onClick={this.changeLang} className={styles.grid__header} />
+        )}
         <ListenButtonWithRouer
           showPlayer={showPlayer}
           cPlayer={cPlayer}
-          onClick={this.handlePlayerButton}
+          onClick={() => togglePlayer(true)}
         />
         <main className={styles.grid__main}>
           <Switch>
-            <Route
-              path={process.env.REACT_APP_HOME}
-              component={() => cHome && <Home data={cHome} />}
-            />
+            {cHome && (
+              <Route
+                path={process.env.REACT_APP_HOME}
+                component={() => cHome && <Home data={cHome} />}
+              />
+            )}
             <Route path="/biography" component={() => cBio && <Biography data={cBio} />} />
             <Route path="/news" component={() => <News data={cNews} />} />
             <Route path="/concert_music" component={() => <Music data={cConcert} />} />
@@ -130,7 +84,7 @@ class Main extends Component {
             <Route
               exact
               path="/projects"
-              component={() => <Projects data={cProject} locale={locale} />}
+              component={() => <Projects data={cProject} locale={language} />}
             />
             <Route path="/projects/:projectUrl" component={ProjectNews} />
             <Route path="/articles/:articleUrl" component={ArticlePage} />
@@ -141,7 +95,6 @@ class Main extends Component {
           <AudioPlayer
             player={cPlayer}
             src={cAllMusic}
-            onClose={this.closePlayer}
             autoplay={false}
             className={styles.grid__player}
           />
