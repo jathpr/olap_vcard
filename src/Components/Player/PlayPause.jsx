@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import withMediaProps from 'react-media-player/lib/decorators/with-media-props'
-import Scale from '../Utils/Scale'
+import Scale from '../Scale'
 
 class PlayPause extends Component {
   handlePlayPause = () => {

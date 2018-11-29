@@ -7,8 +7,8 @@ import {
   TRANSLATE_DATA,
   ADD_RAW_DATA,
 } from './actionTypes'
-import parse from '../Components/Utils/parseCMSData'
-import setLang from '../Components/Utils/i18n'
+import parse from '../utils/parseCMSData'
+import setLang from '../utils/i18n'
 
 const SYNC_TOKEN = 'contentfulSyncToken'
 const SYNC_DATA = 'contentfulEntyres'
@@ -60,40 +60,43 @@ const addRowData = data => ({
   payload: data,
 })
 
-export const fetchContent = () => (dispatch, getState) => {
+const fetchContent = () => (dispatch, getState) => {
   dispatch(dataLoading(true))
-
-  const syncToken = localStorage.getItem(SYNC_TOKEN)
-  const syncData = localStorage.getItem(SYNC_DATA)
-  const syncAssets = localStorage.getItem(SYNC_ASSETS)
-  const isInitial = !(false && syncToken && syncData && syncAssets)
-
-  return (isInitial
-    ? client.sync({ initial: true, resolveLinks: false })
-    : client.sync({ nextSyncToken: syncToken })
-  )
+  return client
+    .sync({ initial: true, resolveLinks: false })
     .then(response => {
-      if (isInitial) {
-        const { entries, assets } = JSON.parse(response.stringifySafe())
-        localStorage.setItem(SYNC_TOKEN, response.nextSyncToken)
-        localStorage.setItem(SYNC_DATA, JSON.stringify(entries))
-        localStorage.setItem(SYNC_ASSETS, JSON.stringify(assets))
-        return { entries, assets }
-      }
-      const { entries, assets, deletedEntries, nextSyncToken } = response
-      const newData = JSON.parse(syncData)
-      if (entries.length > 0) {
-        localStorage.setItem(SYNC_DATA, newData)
-      }
-      if (deletedEntries.length > 0) {
-        localStorage.setItem(SYNC_DATA, newData)
-      }
-      localStorage.setItem(SYNC_TOKEN, nextSyncToken)
-      return parse(newData, JSON.parse(assets))
+      const { entries, assets } = JSON.parse(response.stringifySafe())
+      localStorage.setItem(SYNC_TOKEN, response.nextSyncToken)
+      localStorage.setItem(SYNC_DATA, JSON.stringify(entries))
+      localStorage.setItem(SYNC_ASSETS, JSON.stringify(assets))
+      return { entries, assets }
     })
     .then(data => {
       dispatch(translateData(getState().language, data))
       dispatch(addRowData(data))
     })
     .catch(error => dispatch(dataFailed(error)))
+}
+
+export const getContent = () => async (dispatch, getState) => {
+  const syncToken = localStorage.getItem(SYNC_TOKEN)
+  const syncData = localStorage.getItem(SYNC_DATA)
+  const syncAssets = localStorage.getItem(SYNC_ASSETS)
+  const isInitial = !(syncToken && syncData && syncAssets)
+
+  if (isInitial) {
+    dispatch(fetchContent())
+    return
+  }
+
+  const data = {}
+  data.entries = JSON.parse(syncData)
+  data.assets = JSON.parse(syncAssets)
+  dispatch(translateData(getState().language, data))
+  dispatch(addRowData(data))
+  const responseData = await client.sync({ nextSyncToken: syncToken })
+  const { assets, entries, deletedAssets, deletedEntries } = responseData
+  if (entries.length + deletedEntries.length + assets.length + deletedAssets.length > 0) {
+    dispatch(fetchContent())
+  }
 }

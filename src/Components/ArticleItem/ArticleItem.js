@@ -7,17 +7,18 @@ import CardLink from 'reactstrap/lib/CardLink'
 import CardTitle from 'reactstrap/lib/CardTitle'
 import CardSubtitle from 'reactstrap/lib/CardSubtitle'
 import Link from 'react-router-dom/Link'
+import dateToLocale from '../../utils/dateToLocale'
 
-function Article({ data, locale }) {
-  const date = new Date(data.dateTime)
-  const dateOptions = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: 'numeric',
-  }
+function ArticleItem({ data, locale }) {
+  // const date = new Date(data.dateTime)
+  // const dateOptions = {
+  //   weekday: 'long',
+  //   year: 'numeric',
+  //   month: 'long',
+  //   day: 'numeric',
+  //   hour: '2-digit',
+  //   minute: 'numeric',
+  // }
   const url = `https:${data.mainPhoto.fields.file.url}?fm=jpg&fl=progressive&w=300`
   const alt = data.mainPhoto.fields.description
 
@@ -26,7 +27,7 @@ function Article({ data, locale }) {
       <Link to={`/articles/${data.urlName}`}>
         <CardBody>
           <CardTitle>{data.title}</CardTitle>
-          <CardSubtitle>{date.toLocaleString(locale, dateOptions)}</CardSubtitle>
+          <CardSubtitle>{dateToLocale(data.dateTime, locale)}</CardSubtitle>
         </CardBody>
         <CardImg width="100%" src={url} alt={alt} />
         <CardBody>
@@ -40,4 +41,4 @@ function Article({ data, locale }) {
   )
 }
 
-export default Article
+export default ArticleItem

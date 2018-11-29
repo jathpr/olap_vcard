@@ -8,6 +8,10 @@
   color: blue;
 }
 
+.row {
+  margin: 0;
+}
+
 .App {
   /* @value colors: "./Styles/variables.css"; */
 }

@@ -1,5 +1,10 @@
+export const USER_LANG = 'USER_LANG'
+
 const getLocale = () => {
   let locale
+
+  const prevLang = localStorage.getItem(USER_LANG)
+  if (prevLang) return prevLang
 
   if (navigator.languages && navigator.languages.length) {
     ;[locale] = navigator.languages

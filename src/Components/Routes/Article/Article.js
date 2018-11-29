@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react'
-import GoogleMapEmbed from '../GoogleMapEmbed'
-import dateToLocale from '../Utils/dateToLocale'
+import GoogleMapEmbed from '../../GoogleMapEmbed'
+import dateToLocale from '../../../utils/dateToLocale'
 
 type Props = {
   data: {
