@@ -1,0 +1,21 @@
+@value dark, white-full from "styles/share/colors.css";
+@value lang-button-side-size: 50px;
+
+.lang__button {
+  composes: button__empty button__link from global;
+  font-family: 'Open Sans', sans-serif;
+  color: white-full;
+  background-color: dark;
+  height: lang-button-side-size;
+  width: lang-button-side-size;
+}
+
+.lang__container {
+  position: fixed;
+  top: 0;
+  right: 10%;
+  display: flex;
+  justify-content: space-between;
+  width: calc(lang-button-side-size * 2 + 10px);
+  z-index: 20;
+}

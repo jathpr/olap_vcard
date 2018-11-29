@@ -1,0 +1,20 @@
+.image {
+  width: 15%;
+}
+
+.image__container {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  align-items: center;
+}
+
+.text__container {
+  margin: 10px;
+}
+
+.button {
+  margin-bottom: 1rem;
+  margin-left: 35px;
+}

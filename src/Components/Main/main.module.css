@@ -4,8 +4,8 @@
 .grid__wrapper {
   display: grid;
   grid-template-columns: header-width 0.5fr 1.5fr;
-  grid-template-rows: 1fr 10%;
-  grid-template-areas: 'header main main' 'header main main';
+  grid-template-rows: 15% 1fr 10%;
+  grid-template-areas: 'header main main' 'header main main' 'header main main';
   height: 100vh;
 }
 
@@ -22,8 +22,28 @@
   height: 100vh;
 }
 
+.grid__content {
+  z-index: 8;
+  grid-column: 2 / 4;
+  grid-row: 2 / 3;
+  height: 80vh;
+}
+
+.grid__jumbo {
+  z-index: 11;
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+  /* position: relative; */
+}
+
 .grid__player {
   z-index: 11;
   grid-column: 1 / 4;
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
+  position: sticky;
+  bottom: 0;
+}
+
+.content-margin {
+  height: 60px;
 }

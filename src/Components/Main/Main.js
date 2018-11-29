@@ -1,31 +1,23 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import Home from '../Routes/Home/Home'
-import Biography from '../Routes/Biography/Biography'
+import Home from '../Routes/Home'
+import Biography from '../Routes/Biography'
 import News from '../Routes/News/News'
 import Music from '../Routes/Music'
 import Contacts from '../Routes/Contacts'
 import Projects from '../Routes/Projects'
-import Header from '../Header/Header'
+import Header from '../Header'
 import Article from '../Routes/Article'
 import AudioPlayer from '../Player/AudioPlayer'
-import ListenButtonWithRouer from '../ListenButton/ListenButtonWithRouer'
+import ListenButton from '../ListenButton'
+import LangSelector from '../LangSelector'
+import Jumbotron from '../Jumbotron'
 import styles from './main.module.css'
 
-function Main({ data, language, showPlayer, togglePlayer, changeLanguage }) {
+function Main({ data, showPlayer, location }) {
   if (!data) return <div />
-  const {
-    cHeader,
-    cHome,
-    cContacts,
-    cBio,
-    cConcert,
-    cFilm,
-    cNews,
-    cPlayer,
-    cProject,
-    cAllMusic,
-  } = data
+  const { cContacts, cConcert, cFilm, cNews, cPlayer, cProject, cAllMusic } = data
+  const isJumbo = location.pathname !== process.env.REACT_APP_HOME
 
   const ProjectNews = param => {
     let curentProject = null
@@ -47,43 +39,33 @@ function Main({ data, language, showPlayer, togglePlayer, changeLanguage }) {
 
   return (
     <div className={styles.grid__wrapper}>
-      <Header data={cHeader} onClick={changeLanguage} className={styles.grid__header} />
-      <ListenButtonWithRouer
-        showPlayer={showPlayer}
-        cPlayer={cPlayer}
-        onClick={() => togglePlayer(true)}
-      />
-      <main className={styles.grid__main}>
+      <Header className={styles.grid__header} location={location} />
+      {isJumbo && <Jumbotron pathname={location.pathname} className={styles.grid__jumbo} />}
+      <main className={isJumbo ? styles.grid__content : styles.grid__main}>
         <Switch>
-          {cHome && (
-            <Route
-              path={process.env.REACT_APP_HOME}
-              component={() => cHome && <Home data={cHome} />}
-            />
-          )}
-          <Route path="/biography" component={() => cBio && <Biography data={cBio} />} />
+          <Route path={process.env.REACT_APP_HOME} component={Home} />
+          <Route path="/biography" component={Biography} />
           <Route path="/news" component={() => <News data={cNews} />} />
           <Route path="/concert_music" component={() => <Music data={cConcert} />} />
           <Route path="/film_music" component={() => <Music data={cFilm} />} />
           <Route path="/contacts" component={() => <Contacts data={cContacts} />} />
-          <Route
-            exact
-            path="/projects"
-            component={() => <Projects data={cProject} locale={language} />}
-          />
+          <Route exact path="/projects" component={() => <Projects data={cProject} />} />
           <Route path="/projects/:projectUrl" component={ProjectNews} />
           <Route path="/articles/:articleUrl" component={ArticlePage} />
           <Redirect to="/home" />
         </Switch>
+        {showPlayer && <div className={styles['content-margin']} />}
       </main>
       {showPlayer && (
         <AudioPlayer
           player={cPlayer}
           src={cAllMusic}
           autoplay={false}
-          className={styles.grid__player}
+          // className={styles.grid__player}
         />
       )}
+      <ListenButton />
+      <LangSelector />
     </div>
   )
 }

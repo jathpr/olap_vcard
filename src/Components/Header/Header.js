@@ -6,14 +6,13 @@ import styles from './header.module.css'
 
 type Props = {
   className: string,
-  onClick: Function,
   data: {
     home: string,
-    bio: string,
+    biography: string,
     projects: string,
     news: string,
-    musicConcert: string,
-    musicFilm: string,
+    concert_music: string,
+    film_music: string,
     music: string,
     contacts: string,
     russian: string,
@@ -21,52 +20,44 @@ type Props = {
   },
 }
 
-function Header({ data, onClick, className }: Props) {
+function Header({ data, className }: Props) {
   const [isMusicOpen, setIsMusicOpen] = useState(false)
 
   return (
     <header className={`${className} ${styles.header}`}>
       <nav className={styles.nav}>
-        <NavLink className={styles.nav_link} to="/home">
+        <NavLink activeClassName={styles.nav__link_active} className={styles.nav__link} to="/home">
           {data.home}
         </NavLink>
-        <NavLink className={styles.nav_link} to="/biography">
-          {data.bio}
+        <NavLink className={styles.nav__link} to="/biography">
+          {data.biography}
         </NavLink>
-        <NavLink className={styles.nav_link} to="/projects">
+        <NavLink className={styles.nav__link} to="/projects">
           {data.projects}
         </NavLink>
-        <NavLink className={styles.nav_link} to="/news">
+        <NavLink className={styles.nav__link} to="/news">
           {data.news}
         </NavLink>
         <button
           type="button"
-          className={styles.nav_link}
+          className={styles.nav__link}
           onClick={() => setIsMusicOpen(!isMusicOpen)}>
           {data.music}
         </button>
         {isMusicOpen && (
           <ul>
-            <NavLink className={styles.nav_link} to="/concert_music">
-              {data.musicConcert}
+            <NavLink className={styles.nav__link} to="/concert_music">
+              {data.concert_music}
             </NavLink>
-            <NavLink className={styles.nav_link} to="/film_music">
-              {data.musicFilm}
+            <NavLink className={styles.nav__link} to="/film_music">
+              {data.film_music}
             </NavLink>
           </ul>
         )}
-        <NavLink className={styles.nav_link} to="/contacts">
+        <NavLink className={styles.nav__link} to="/contacts">
           {data.contacts}
         </NavLink>
       </nav>
-      <div className={styles.lang__container}>
-        <button type="button" onClick={() => onClick('ru')} className={`${styles.lang__button}`}>
-          {data.russian}
-        </button>
-        <button type="button" onClick={() => onClick('en-US')} className={`${styles.lang__button}`}>
-          {data.english}
-        </button>
-      </div>
     </header>
   )
 }
