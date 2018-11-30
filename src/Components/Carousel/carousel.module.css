@@ -1,0 +1,41 @@
+.arrow {
+}
+
+.arrow_left {
+}
+
+.arrow_right {
+}
+
+.item {
+  /* width: 30%; */
+  margin: auto;
+  padding: 20px;
+}
+
+.item_visible {
+}
+
+.item_invisible {
+}
+
+.item_center {
+  /* transform: scale(1.1); */
+  /* transition: width 2s, height 2s, background-color 2s, transform 2s; */
+  /* transform: translate(-21px, 0); */
+}
+
+.item_side {
+  transform: scale(0.5);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.items {
+  display: block;
+}

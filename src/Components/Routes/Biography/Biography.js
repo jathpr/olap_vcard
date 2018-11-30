@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import Link from 'react-router-dom/Link'
 import Collapse from 'Components/Collapse/Collapse'
 import style from './biography.module.css'
+import Carousel from '../../Carousel'
+import parse from '../../../utils/richTextParser'
 
 type Props = {
   data: {
@@ -13,6 +15,7 @@ type Props = {
     btnListPublications: string,
     hint: string,
     biography: string,
+    bio: any,
     photos: Array<{
       fields: {
         file: {
@@ -42,18 +45,20 @@ function Biography({ data }: Props) {
     const url = `https:${photo.fields.file.url}?fm=jpg&fl=progressive&w=400`
     const id = photo.fields.file.url + index
     return (
-      <div key={id} className={style.image}>
-        <Link to={photo.fields.file.url} target="_self">
-          <img width="100%" src={url} alt={photo.fields.description} />
-        </Link>
-      </div>
+      // <div key={id} className={style.image}>
+      <Link key={id} to={photo.fields.file.url} target="_self">
+        <img width="100%" src={url} alt={photo.fields.description} />
+      </Link>
+      // </div>
     )
   })
 
   return (
     <>
-      <div className={style.image__container}>{photos}</div>
-      <div className={style.text__container}>{data.biography}</div>
+      {/* <div className={style.image__container}>{photos}</div> */}
+      <Carousel>{photos}</Carousel>
+      {/* <div className={style.text__container}>{data.biography}</div> */}
+      <div className={style.text__container} dangerouslySetInnerHTML={parse(data.biography)} />
       <div className={style.text__container}>
         <button type="button" onClick={() => setIsAudioOpen(!isAudioOpen)} className={style.button}>
           {data.btnListAudio}
