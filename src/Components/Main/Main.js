@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Home from '../Routes/Home'
 import Biography from '../Routes/Biography'
-import News from '../Routes/News/News'
+import News from '../Routes/News'
 import Music from '../Routes/Music'
 import Contacts from '../Routes/Contacts'
 import Projects from '../Routes/Projects'
@@ -45,11 +45,11 @@ function Main({ data, showPlayer, location }) {
         <Switch>
           <Route path={process.env.REACT_APP_HOME} component={Home} />
           <Route path="/biography" component={Biography} />
-          <Route path="/news" component={() => <News data={cNews} />} />
+          <Route path="/news" component={News} />
           <Route path="/concert_music" component={() => <Music data={cConcert} />} />
           <Route path="/film_music" component={() => <Music data={cFilm} />} />
           <Route path="/contacts" component={() => <Contacts data={cContacts} />} />
-          <Route exact path="/projects" component={() => <Projects data={cProject} />} />
+          <Route exact path="/projects" component={Projects} />
           <Route path="/projects/:projectUrl" component={ProjectNews} />
           <Route path="/articles/:articleUrl" component={ArticlePage} />
           <Redirect to="/home" />

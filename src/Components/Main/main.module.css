@@ -7,6 +7,7 @@
   grid-template-rows: 15% 1fr 10%;
   grid-template-areas: 'header main main' 'header main main' 'header main main';
   height: 100vh;
+  background-color: grey-cool;
 }
 
 .grid__header {
@@ -25,7 +26,7 @@
 .grid__content {
   z-index: 8;
   grid-column: 2 / 4;
-  grid-row: 2 / 3;
+  grid-row: 2 / 4;
   height: 80vh;
 }
 

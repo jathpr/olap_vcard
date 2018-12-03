@@ -36,3 +36,27 @@
 
 .nav__link_active {
 }
+
+.button-social {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  padding: 0;
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.button-social__container {
+  display: block;
+  margin-bottom: 20%;
+}
+
+.button-social:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}

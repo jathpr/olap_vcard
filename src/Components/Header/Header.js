@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import Link from 'react-router-dom/Link'
+import Modal from 'react-modal'
 import styles from './header.module.css'
 
 type Props = {
@@ -20,8 +22,24 @@ type Props = {
   },
 }
 
+Modal.setAppElement('#root')
+const customStyles = {
+  overlay: {
+    zIndex: '200',
+  },
+}
+
 function Header({ data, className }: Props) {
   const [isMusicOpen, setIsMusicOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  function handleOpenModal() {
+    setIsModalOpen(true)
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false)
+  }
 
   return (
     <header className={`${className} ${styles.header}`}>
@@ -58,6 +76,30 @@ function Header({ data, className }: Props) {
           {data.contacts}
         </NavLink>
       </nav>
+      <div className={styles['button-social__container']}>
+        <Link to="//www.facebook.com/olga.podgaiskaja" target="blank">
+          <button type="button" className={styles['button-social']}>
+            Fb
+          </button>
+        </Link>
+        <Link to="//vk.com/id12970969" target="blank">
+          <button type="button" className={styles['button-social']}>
+            Vk
+          </button>
+        </Link>
+        <button type="button" className={styles['button-social']} onClick={handleOpenModal}>
+          Mod
+        </button>
+        <Modal
+          isOpen={isModalOpen}
+          style={customStyles}
+          onRequestClose={handleCloseModal}
+          contentLabel="Minimal Modal Example">
+          <button type="button" onClick={handleCloseModal}>
+            Close Modal
+          </button>
+        </Modal>
+      </div>
     </header>
   )
 }

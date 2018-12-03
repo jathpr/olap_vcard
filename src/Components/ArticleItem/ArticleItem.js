@@ -1,43 +1,49 @@
+// @flow
+
 import React from 'react'
-import Card from 'reactstrap/lib/Card'
-import CardImg from 'reactstrap/lib/CardImg'
-import CardText from 'reactstrap/lib/CardText'
-import CardBody from 'reactstrap/lib/CardBody'
-import CardLink from 'reactstrap/lib/CardLink'
-import CardTitle from 'reactstrap/lib/CardTitle'
-import CardSubtitle from 'reactstrap/lib/CardSubtitle'
 import Link from 'react-router-dom/Link'
 import dateToLocale from '../../utils/dateToLocale'
+import styles from './article.module.css'
 
-function ArticleItem({ data, locale }) {
-  // const date = new Date(data.dateTime)
-  // const dateOptions = {
-  //   weekday: 'long',
-  //   year: 'numeric',
-  //   month: 'long',
-  //   day: 'numeric',
-  //   hour: '2-digit',
-  //   minute: 'numeric',
-  // }
+type Props = {
+  locale: string,
+  data: {
+    urlName: string,
+    title: string,
+    dateTime: string,
+    aboutShort: string,
+    linkTitle: string,
+    link: string,
+    mainPhoto: {
+      fields: {
+        file: {
+          url: string,
+        },
+        title: string,
+        description: string,
+      },
+      sys: {},
+    },
+  },
+}
+
+function ArticleItem({ data, locale }: Props) {
   const url = `https:${data.mainPhoto.fields.file.url}?fm=jpg&fl=progressive&w=300`
   const alt = data.mainPhoto.fields.description
 
   return (
-    <Card>
-      <Link to={`/articles/${data.urlName}`}>
-        <CardBody>
-          <CardTitle>{data.title}</CardTitle>
-          <CardSubtitle>{dateToLocale(data.dateTime, locale)}</CardSubtitle>
-        </CardBody>
-        <CardImg width="100%" src={url} alt={alt} />
-        <CardBody>
-          <CardText>{data.aboutShort}</CardText>
-        </CardBody>
+    <>
+      <Link className={styles.container} to={`/articles/${data.urlName}`}>
+        <img className={styles.image} src={url} alt={alt} />
+        <h2>{data.title}</h2>
+        <h3>{dateToLocale(data.dateTime, locale)}</h3>
+        <p>{data.aboutShort}</p>
+        <a href={data.link} target="blank">
+          {data.linkTitle}
+        </a>
       </Link>
-      <CardLink href={data.link} target="blank">
-        {data.linkTitle}
-      </CardLink>
-    </Card>
+      <div className={styles.separator} />
+    </>
   )
 }
 

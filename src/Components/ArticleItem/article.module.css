@@ -1,0 +1,22 @@
+@value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
+@value marg 40px;
+
+.container {
+  padding: marg;
+  /* background-color: red; */
+  text-decoration: none;
+  float: left;
+}
+
+.image {
+  height: 200px;
+  float: left;
+  /* margin: marg; */
+  margin-right: marg;
+}
+
+.separator {
+  clear: both;
+  height: 40px;
+  background-color: grey-cool;
+}

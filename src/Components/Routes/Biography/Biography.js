@@ -54,7 +54,7 @@ function Biography({ data }: Props) {
   })
 
   return (
-    <>
+    <div className={style.container}>
       {/* <div className={style.image__container}>{photos}</div> */}
       <Carousel>{photos}</Carousel>
       {/* <div className={style.text__container}>{data.biography}</div> */}
@@ -73,7 +73,7 @@ function Biography({ data }: Props) {
           <ul>{listPublications}</ul>
         </Collapse>
       </div>
-    </>
+    </div>
   )
 }
 
