@@ -34,7 +34,7 @@ function News({ project, data }: Props) {
 
   return (
     <>
-      <h1>{project ? project.title : null}</h1>
+      {/* <h1>{project ? project.title : null}</h1> */}
       <div className={styles.container}>
         {data
           .filter(article => !project || isArticleConnectedWithProject(article.project))

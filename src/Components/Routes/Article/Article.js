@@ -3,6 +3,7 @@
 import * as React from 'react'
 import GoogleMapEmbed from '../../GoogleMapEmbed'
 import dateToLocale from '../../../utils/dateToLocale'
+import styles from './article.module.css'
 
 type Props = {
   data: {
@@ -35,19 +36,17 @@ function Article({ data, locale }: Props) {
   const alt = data.mainPhoto.fields.title
 
   return (
-    <div className="row">
-      <div className="col-12 col-md-7 p-2">
-        <h2>{data.title}</h2>
-        <h3>{dateToLocale(data.dateTime, locale)}</h3>
-        <img width="100%" src={imgUrl} alt={alt} />
-        <p>{data.fullText}</p>
-      </div>
-      <div className="col-12 col-md-5 p-2">
-        <a href={data.link} target="_blank" rel="noopener noreferrer">
-          {data.linkTitle}
-        </a>
-        {data.location && <GoogleMapEmbed lat={data.location.lat} lng={data.location.lon} />}
-      </div>
+    <div className={styles.container}>
+      <h2>{data.title}</h2>
+      <h3>{dateToLocale(data.dateTime, locale)}</h3>
+      <img className={styles.image} src={imgUrl} alt={alt} />
+      {data.location && (
+        <GoogleMapEmbed className={styles.map} lat={data.location.lat} lng={data.location.lon} />
+      )}
+      <p>{data.fullText}</p>
+      <a href={data.link} target="_blank" rel="noopener noreferrer">
+        {data.linkTitle}
+      </a>
     </div>
   )
 }

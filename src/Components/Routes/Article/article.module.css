@@ -1,20 +1,18 @@
 @value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
-@value marg 40px;
-@value cross-size 50px;
 
 .container {
-  padding: marg;
-  /* background-color: red; */
-  text-decoration: none;
-  float: left;
+  background-color: white-full;
+  padding: 20px;
   width: 100%;
 }
 
 .image {
-  height: 200px;
+  /* height: 400px; */
+  /* display: inline-block; */
+  width: 63%;
+  vertical-align: baseline;
+  margin: 1%;
   float: left;
-  /* margin: marg; */
-  margin-right: marg;
 }
 
 .separator {
@@ -43,7 +41,6 @@
   font-style: normal;
   line-height: 1em;
   color: black-dark;
-  padding-right: marg;
 }
 
 .text__date {
@@ -53,41 +50,13 @@
   font-style: normal;
   line-height: 1em;
   color: black-dark;
-  padding-right: marg;
   margin: 10px;
 }
 
-.close {
-  position: fixed;
-  right: cross-size;
-  top: cross-size;
-  width: cross-size;
-  height: cross-size;
-  opacity: 0.3;
-  cursor: pointer;
-  padding: 0;
-  box-sizing: content-box;
-}
-
-.close:hover {
-  opacity: 1;
-}
-
-.close::before,
-.close::after {
-  position: absolute;
-  top: 0;
-  left: calc(cross-size/2);
-  content: ' ';
-  height: cross-size;
-  width: 2px;
-  background-color: #333;
-}
-
-.close::before {
-  transform: rotate(45deg);
-}
-
-.close::after {
-  transform: rotate(-45deg);
+.map {
+  height: 400px;
+  display: inline-block;
+  margin: 1%;
+  width: 33%;
+  vertical-align: top;
 }

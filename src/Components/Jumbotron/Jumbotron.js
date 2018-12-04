@@ -23,16 +23,29 @@ type Props = {
     name: string,
     shortBio: string,
   },
+  cProject: Array<{
+    title: string,
+    urlName: string,
+  }>,
 }
 
-function Jumbotron({ pathname, cHome, cHeader, className }: Props) {
+function Jumbotron({ pathname, cHome, cHeader, cProject, className }: Props) {
+  const arr = pathname.split('/')
+  if (arr[0] === '') arr.shift()
+  let title = ''
+  if (arr.length > 1) {
+    cProject.forEach(project => {
+      if (project.urlName === arr[1]) {
+        ;({ title } = project)
+      }
+    })
+  } else if (Object.prototype.hasOwnProperty.call(cHeader, arr[0]))
+    title = cHeader[arr[0]].toUpperCase()
   return (
     <div className={`${className} ${styles.container}`}>
       <div className={`${styles.text} ${styles.text__name}`}>{cHome.name.toUpperCase()}</div>
       <div className={`${styles.text} ${styles.text__about}`}>{cHome.fewWords.toUpperCase()}</div>
-      <div className={`${styles.text} ${styles.text__title}`}>
-        {cHeader[pathname.slice(1)] && cHeader[pathname.slice(1)].toUpperCase()}
-      </div>
+      <div className={`${styles.text} ${styles.text__title}`}>{title}</div>
     </div>
   )
 }

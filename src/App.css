@@ -8,10 +8,10 @@
   color: blue;
 }
 
-.row {
-  margin: 0;
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+  overflow: hidden;
 }
-
 .App {
   /* @value colors: "./Styles/variables.css"; */
 }
