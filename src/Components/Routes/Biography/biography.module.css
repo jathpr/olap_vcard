@@ -1,9 +1,7 @@
-.image {
-  /* width: 15%; */
-}
+@value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
 
 .container {
-  background-color: white;
+  background-color: white-full;
 }
 
 .image__container {

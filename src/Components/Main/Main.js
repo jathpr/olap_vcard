@@ -16,7 +16,7 @@ import styles from './main.module.css'
 
 function Main({ data, showPlayer, location }) {
   if (!data) return <div />
-  const { cContacts, cConcert, cFilm, cNews, cPlayer, cProject, cAllMusic } = data
+  const { cContacts, cNews, cProject } = data
   const isJumbo = location.pathname !== process.env.REACT_APP_HOME
 
   const ProjectNews = param => {
@@ -46,24 +46,19 @@ function Main({ data, showPlayer, location }) {
           <Route path={process.env.REACT_APP_HOME} component={Home} />
           <Route path="/biography" component={Biography} />
           <Route path="/news" component={News} />
-          <Route path="/concert_music" component={() => <Music data={cConcert} />} />
-          <Route path="/film_music" component={() => <Music data={cFilm} />} />
+          {/* <Route path="/concert_music" component={() => <Music data={cConcert} />} />
+          <Route path="/film_music" component={() => <Music data={cFilm} />} /> */}
+          <Route path="/music" component={Music} />
           <Route path="/contacts" component={() => <Contacts data={cContacts} />} />
           <Route exact path="/projects" component={Projects} />
           <Route path="/projects/:projectUrl" component={ProjectNews} />
           <Route path="/articles/:articleUrl" component={ArticlePage} />
           <Redirect to="/home" />
         </Switch>
-        {showPlayer && <div className={styles['content-margin']} />}
+        {showPlayer && isJumbo && <div className={styles['content-margin']} />}
       </main>
-      {showPlayer && (
-        <AudioPlayer
-          player={cPlayer}
-          src={cAllMusic}
-          autoplay={false}
-          // className={styles.grid__player}
-        />
-      )}
+      {showPlayer && <AudioPlayer autoplay />}
+      {/* className={styles.grid__player} */}
       <ListenButton />
       <LangSelector />
     </div>

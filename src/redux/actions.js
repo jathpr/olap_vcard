@@ -6,6 +6,8 @@ import {
   DATA_FAILED,
   TRANSLATE_DATA,
   ADD_RAW_DATA,
+  PLAYER_SET_TRACK,
+  PLAYER_PLAY_PAUSE,
 } from './actionTypes'
 import parse from '../utils/parseCMSData'
 import setLang from '../utils/i18n'
@@ -44,6 +46,16 @@ export const changeLanguage = lang => (dispatch, getState) => {
 export const togglePlayer = newState => ({
   type: TOGGLE_PLAYER,
   payload: { newState },
+})
+
+export const setTrack = track => ({
+  type: PLAYER_SET_TRACK,
+  payload: track,
+})
+
+export const playPause = isPlay => ({
+  type: PLAYER_PLAY_PAUSE,
+  payload: isPlay,
 })
 
 const dataLoading = () => ({
@@ -99,4 +111,9 @@ export const getContent = () => async (dispatch, getState) => {
   if (entries.length + deletedEntries.length + assets.length + deletedAssets.length > 0) {
     dispatch(fetchContent())
   }
+}
+
+export const selectTrack = title => (dispatch, getState) => {
+  const trackNumber = getState().content.data.cAllMusic.findIndex(song => title === song.title)
+  dispatch(setTrack(trackNumber))
 }

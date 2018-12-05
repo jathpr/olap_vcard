@@ -30,7 +30,7 @@ const customStyles = {
 }
 
 function Header({ data, className }: Props) {
-  const [isMusicOpen, setIsMusicOpen] = useState(false)
+  // const [isMusicOpen, setIsMusicOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   function handleOpenModal() {
@@ -56,7 +56,10 @@ function Header({ data, className }: Props) {
         <NavLink className={styles.nav__link} to="/news">
           {data.news}
         </NavLink>
-        <button
+        <NavLink className={styles.nav__link} to="/music">
+          {data.music}
+        </NavLink>
+        {/* <button
           type="button"
           className={styles.nav__link}
           onClick={() => setIsMusicOpen(!isMusicOpen)}>
@@ -64,14 +67,14 @@ function Header({ data, className }: Props) {
         </button>
         {isMusicOpen && (
           <ul>
-            <NavLink className={styles.nav__link} to="/concert_music">
+            <NavLink className={styles.nav__link} to="/music">
               {data.concert_music}
             </NavLink>
             <NavLink className={styles.nav__link} to="/film_music">
               {data.film_music}
             </NavLink>
           </ul>
-        )}
+        )} */}
         <NavLink className={styles.nav__link} to="/contacts">
           {data.contacts}
         </NavLink>

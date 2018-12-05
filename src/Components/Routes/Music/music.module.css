@@ -1,0 +1,26 @@
+@value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
+
+.container {
+  background-color: white-full;
+  display: flex;
+  justify-content: space-between;
+}
+
+.music_container {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.video_container {
+  width: 60%;
+  display: inline-block;
+}
+
+.title {
+  margin-left: 15px;
+}
+
+.song {
+  margin-bottom: 15px;
+}
