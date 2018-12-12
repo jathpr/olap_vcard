@@ -18,7 +18,7 @@ function AudioPlayer({
   togglePlayer,
   currentTrack,
   isPlaying,
-  playPause,
+  playPauseAudio,
   setTrack,
 }) {
   const handlePrevTrack = () => {
@@ -33,52 +33,50 @@ function AudioPlayer({
 
   return (
     <Media>
-      {mediaProps => (
-        <div
-          className={`${className} audio-container`}
-          role="button"
-          onKeyDown={keyboardControls.bind(null, mediaProps)}
-          tabIndex="0">
-          {src && (
-            <Player
-              src={src[currentTrack].file.url}
-              useAudioObject
-              onPlay={() => playPause(true)}
-              onPause={() => playPause(false)}
-              autoplay={isPlaying}
-            />
-          )}
-          {
-            <div
-              className="media-controls"
-              // style={{ height: `${process.env.REACT_APP_AUDIO_HEIGHT}px` }}
-            >
-              <PrevTrack
-                className="media-control media-control--prev-track"
-                onClick={handlePrevTrack}
-              />
-              <PlayPause className="media-control media-control--play-pause" />
-              <NextTrack
-                className="media-control media-control--next-track"
-                onClick={handleNextTrack}
-              />
-              <CurrentTime className="media-control media-control--current-time d-none d-sm-block" />
-              <div className="media-player-col-container">
-                <div className="media-player-title-text">{src && src[currentTrack].title}</div>
-                <div className="media-controls-inner">
-                  <SeekBar className="media-control media-control--volume-range" />
+      {mediaProps => {
+        if (!mediaProps.isLoading)
+          if (isPlaying) mediaProps.play()
+          else mediaProps.pause()
+        return (
+          <div
+            className={`${className} audio-container`}
+            role="button"
+            onKeyDown={keyboardControls.bind(null, mediaProps)}
+            tabIndex="0">
+            {src && <Player src={src[currentTrack].file.url} useAudioObject />}
+            {
+              <div className="media-controls">
+                <PrevTrack
+                  className="media-control media-control--prev-track"
+                  onClick={handlePrevTrack}
+                />
+                <PlayPause
+                  isPlaying={isPlaying}
+                  playPauseAudio={isPlaying ? playPauseAudio(false) : playPauseAudio(true)}
+                  className="media-control media-control--play-pause"
+                />
+                <NextTrack
+                  className="media-control media-control--next-track"
+                  onClick={handleNextTrack}
+                />
+                <CurrentTime className="media-control media-control--current-time d-none d-sm-block" />
+                <div className="media-player-col-container">
+                  <div className="media-player-title-text">{src && src[currentTrack].title}</div>
+                  <div className="media-controls-inner">
+                    <SeekBar className="media-control media-control--volume-range" />
+                  </div>
                 </div>
+                <Duration className="media-control media-control--duration d-none d-sm-block" />
+                <MuteUnmute className="media-control media-control--mute-unmute" />
+                <Volume className="media-control media-control--volume d-none d-sm-block" />
+                <button type="button" onClick={() => togglePlayer(false)}>
+                  X
+                </button>
               </div>
-              <Duration className="media-control media-control--duration d-none d-sm-block" />
-              <MuteUnmute className="media-control media-control--mute-unmute" />
-              <Volume className="media-control media-control--volume d-none d-sm-block" />
-              <button type="button" onClick={() => togglePlayer(false)}>
-                X
-              </button>
-            </div>
-          }
-        </div>
-      )}
+            }
+          </div>
+        )
+      }}
     </Media>
   )
 }

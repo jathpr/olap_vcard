@@ -1,7 +1,9 @@
 .arrow {
+  composes: button__empty from global;
 }
 
 .arrow_left {
+  transform: rotate(180deg);
 }
 
 .arrow_right {
@@ -34,6 +36,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin: 0 50px;
 }
 
 .items {

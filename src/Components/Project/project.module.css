@@ -1,8 +1,8 @@
 @value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
-@value marg 40px;
+@value marg 2vw;
 
 .container {
-  padding: marg;
+  padding: marg marg 0 marg;
   /* background-color: red; */
   text-decoration: none;
   float: left;
@@ -13,6 +13,7 @@
   float: left;
   /* margin: marg; */
   margin-right: marg;
+  margin-bottom: marg;
 }
 
 .separator {
@@ -24,7 +25,6 @@
 .text__title {
   font-family: 'Forum', sans-serif;
   font-weight: bold;
-  text-align: justify;
   font-size: 36px;
   font-style: normal;
   line-height: 1em;
@@ -41,5 +41,6 @@
   font-style: normal;
   line-height: 1em;
   color: black-dark;
-  padding-right: marg;
+  /* padding-right: marg; */
+  /* margin-left: 340px; */
 }

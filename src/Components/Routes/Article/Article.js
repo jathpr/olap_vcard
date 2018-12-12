@@ -37,16 +37,20 @@ function Article({ data, locale }: Props) {
 
   return (
     <div className={styles.container}>
-      <h2>{data.title}</h2>
-      <h3>{dateToLocale(data.dateTime, locale)}</h3>
+      <div className={styles.head}>
+        <h2>{data.title}</h2>
+        <h3>{dateToLocale(data.dateTime, locale)}</h3>
+      </div>
       <img className={styles.image} src={imgUrl} alt={alt} />
       {data.location && (
         <GoogleMapEmbed className={styles.map} lat={data.location.lat} lng={data.location.lon} />
       )}
-      <p>{data.fullText}</p>
-      <a href={data.link} target="_blank" rel="noopener noreferrer">
-        {data.linkTitle}
-      </a>
+      <div className={styles.about}>
+        <p>{data.fullText}</p>
+        <a href={data.link} target="_blank" rel="noopener noreferrer">
+          {data.linkTitle}
+        </a>
+      </div>
     </div>
   )
 }

@@ -86,9 +86,7 @@ function Music({ cFilm, cConcert, selectTrack }: Props) {
         <h2 className={style.title}>{cFilm.title}</h2>
         <ul>{filmAudio}</ul>
       </div>
-      <div className={style.video_container}>
-        {cFilm.video && <Video data={cFilm.video} videoList={cFilm.videoList} />}
-      </div>
+      <div className={style.video_container}>{cFilm.video && <Video />}</div>
     </div>
   )
 }

@@ -1,50 +1,101 @@
-@value grey-cool from "styles/share/colors.css";
-@value header-width from "styles/share/data.css";
+@value grey-cool, dark, white-full from "styles/share/colors.css";
+@value small, medium, large from "styles/share/bp.css";
+@value header-width: 33vw;
+@value jumbotron-height: 15vh;
 
-.grid__wrapper {
-  display: grid;
-  grid-template-columns: header-width 0.5fr 1.5fr;
-  grid-template-rows: 15% 1fr 10%;
-  grid-template-areas: 'header main main' 'header main main' 'header main main';
+.wrapper {
   height: 100vh;
   background-color: grey-cool;
 }
 
-.grid__header {
-  grid-area: header;
+.header {
   background-color: grey-cool;
+  position: fixed;
+  width: header-width;
+  height: 100vh;
   z-index: 8;
 }
 
-.grid__main {
-  grid-area: main;
+.main {
+  margin-left: header-width;
   z-index: 8;
   position: relative;
   height: 100vh;
 }
 
-.grid__content {
+.content {
   z-index: 8;
-  grid-column: 2 / 4;
-  grid-row: 2 / 4;
-  height: 80vh;
+  margin-left: header-width;
+  padding-top: jumbotron-height;
 }
 
-.grid__jumbo {
+.jumbo {
   z-index: 11;
-  grid-column: 2 / 4;
-  grid-row: 1 / 2;
-  /* position: relative; */
+  background-color: grey-cool;
+  position: fixed;
+  margin-left: header-width;
+  width: 100%;
+  height: jumbotron-height;
 }
 
-.grid__player {
+.player {
   z-index: 11;
-  grid-column: 1 / 4;
-  grid-row: 3 / 4;
   position: sticky;
   bottom: 0;
 }
 
 .content-margin {
   height: 60px;
+}
+
+.menu__button {
+  composes: button__empty button__link from global;
+  z-index: 30;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  padding: 0;
+  display: none;
+  fill: white-full;
+  background-color: dark;
+}
+
+@media medium, small {
+  .menu__button {
+    display: block;
+  }
+  /* 
+  .header {
+    display: block;
+  } */
+
+  .main {
+    margin-left: 0;
+  }
+
+  .content {
+    margin-left: 0;
+    padding-top: jumbotron-height;
+  }
+
+  .jumbo {
+    position: fixed;
+    margin-left: 0;
+    width: 100%;
+    height: jumbotron-height;
+  }
+
+  .resp__header {
+    z-index: 10;
+    width: 30%;
+    min-width: 200px;
+  }
+
+  .resp__header_show {
+    display: flex;
+  }
+
+  .resp__header_hide {
+    display: none;
+  }
 }

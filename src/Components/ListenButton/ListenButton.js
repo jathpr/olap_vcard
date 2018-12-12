@@ -14,12 +14,14 @@ type Props = {
 
 function ListenButton({ showPlayer, cPlayer, togglePlayer }: Props) {
   return (
-    !showPlayer && (
-      <button type="button" className={`${styles['listen-button']}`} onClick={togglePlayer}>
-        <Play />
-        <span className={styles['listen-button__text']}>{cPlayer && cPlayer.listen}</span>
-      </button>
-    )
+    <div className={styles.container}>
+      {!showPlayer && (
+        <button type="button" className={`${styles['listen-button']}`} onClick={togglePlayer}>
+          <Play />
+          <span className={styles['listen-button__text']}>{cPlayer && cPlayer.listen}</span>
+        </button>
+      )}
+    </div>
   )
 }
 

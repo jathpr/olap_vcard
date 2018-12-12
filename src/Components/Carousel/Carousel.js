@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react'
+import { ReactComponent as Arrow } from './Right.svg'
 import styles from './carousel.module.css'
 
 type Props = {
@@ -40,7 +41,7 @@ function Caorusel({ children }: Props) {
         type="button"
         className={`${styles.arrow} ${styles.arrow_left}`}
         onClick={handleClick(-1)}>
-        L
+        <Arrow />
       </button>
       <div className={`${styles.item} ${styles.item_side}`}>{children[currentItem]}</div>
       <div className={`${styles.item} ${styles.item_center}`}>
@@ -54,7 +55,7 @@ function Caorusel({ children }: Props) {
         type="button"
         className={`${styles.arrow} ${styles.arrow_right}`}
         onClick={handleClick(1)}>
-        R
+        <Arrow />
       </button>
     </div>
   )

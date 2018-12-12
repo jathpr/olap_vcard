@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Link from 'react-router-dom/Link'
 import Modal from 'react-modal'
+import ListenButton from '../ListenButton'
 import styles from './header.module.css'
 
 type Props = {
@@ -33,16 +34,9 @@ function Header({ data, className }: Props) {
   // const [isMusicOpen, setIsMusicOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  function handleOpenModal() {
-    setIsModalOpen(true)
-  }
-
-  function handleCloseModal() {
-    setIsModalOpen(false)
-  }
-
   return (
     <header className={`${className} ${styles.header}`}>
+      <ListenButton />
       <nav className={styles.nav}>
         <NavLink activeClassName={styles.nav__link_active} className={styles.nav__link} to="/home">
           {data.home}
@@ -80,25 +74,28 @@ function Header({ data, className }: Props) {
         </NavLink>
       </nav>
       <div className={styles['button-social__container']}>
-        <Link to="//www.facebook.com/olga.podgaiskaja" target="blank">
+        <Link to="//www.facebook.com/olga.podgaiskaja" target="_blank" rel="noopener noreferrer">
           <button type="button" className={styles['button-social']}>
             Fb
           </button>
         </Link>
-        <Link to="//vk.com/id12970969" target="blank">
+        <Link to="//vk.com/id12970969" target="_blank" rel="noopener noreferrer">
           <button type="button" className={styles['button-social']}>
             Vk
           </button>
         </Link>
-        <button type="button" className={styles['button-social']} onClick={handleOpenModal}>
+        {/* <button
+          type="button"
+          className={styles['button-social']}
+          onClick={() => setIsModalOpen(true)}>
           Mod
-        </button>
+        </button> */}
         <Modal
           isOpen={isModalOpen}
           style={customStyles}
-          onRequestClose={handleCloseModal}
+          onRequestClose={() => setIsModalOpen(false)}
           contentLabel="Minimal Modal Example">
-          <button type="button" onClick={handleCloseModal}>
+          <button type="button" onClick={() => setIsModalOpen(false)}>
             Close Modal
           </button>
         </Modal>

@@ -46,10 +46,32 @@ function Biography({ data }: Props) {
     const id = photo.fields.file.url + index
     return (
       // <div key={id} className={style.image}>
-      <Link key={id} to={photo.fields.file.url} target="_self">
+      <Link key={id} to={photo.fields.file.url} target="_blank" rel="noopener noreferrer">
         <img width="100%" src={url} alt={photo.fields.description} />
       </Link>
-      // </div>
+      /* <>
+        <button
+          key={id}
+          type="button"
+          onClick={() => setIsModalOpen(true)}
+          className="button__empty">
+          <img width="100%" src={url} alt={photo.fields.description} />
+        </button>
+
+        <Modal
+          shouldFocusAfterRender
+          shouldCloseOnOverlayClick={false}
+          isOpen={isModalOpen}
+          style={{ overlay: { zIndex: '201' } }}
+          onRequestClose={() => setIsModalOpen(false)}>
+          <img width="100%" src={url} alt={photo.fields.description} />
+          <button
+            type="button"
+            className={`${styles.close} button__empty`}
+            onClick={() => setIsModalOpen(false)}
+          />
+        </Modal>
+      </> */
     )
   })
 

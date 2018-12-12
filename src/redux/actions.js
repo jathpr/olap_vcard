@@ -8,6 +8,9 @@ import {
   ADD_RAW_DATA,
   PLAYER_SET_TRACK,
   PLAYER_PLAY_PAUSE,
+  VIDEO_PLAY_PAUSE,
+  VIDEO_SET_TRACK,
+  RESP_TOGGLE_MENU,
 } from './actionTypes'
 import parse from '../utils/parseCMSData'
 import setLang from '../utils/i18n'
@@ -48,13 +51,28 @@ export const togglePlayer = newState => ({
   payload: { newState },
 })
 
+export const toggleMenu = newState => ({
+  type: RESP_TOGGLE_MENU,
+  payload: { newState },
+})
+
 export const setTrack = track => ({
   type: PLAYER_SET_TRACK,
   payload: track,
 })
 
+export const setVideo = track => ({
+  type: VIDEO_SET_TRACK,
+  payload: track,
+})
+
 export const playPause = isPlay => ({
   type: PLAYER_PLAY_PAUSE,
+  payload: isPlay,
+})
+
+export const videoPlayPause = isPlay => ({
+  type: VIDEO_PLAY_PAUSE,
   payload: isPlay,
 })
 

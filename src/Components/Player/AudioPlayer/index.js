@@ -13,7 +13,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
   togglePlayer: showPlayer => dispatch(togglePlayer(showPlayer)),
   setTrack: track => dispatch(setTrack(track)),
-  playPause: isPlay => dispatch(playPause(isPlay)),
+  playPauseAudio: isPlay => () => dispatch(playPause(isPlay)),
 })
 
 export default connect(

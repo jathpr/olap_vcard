@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { ReactComponent as MenuImg } from './menu.svg'
 import Home from '../Routes/Home'
 import Biography from '../Routes/Biography'
 import News from '../Routes/News'
@@ -9,12 +10,11 @@ import Projects from '../Routes/Projects'
 import Header from '../Header'
 import Article from '../Routes/Article'
 import AudioPlayer from '../Player/AudioPlayer'
-import ListenButton from '../ListenButton'
 import LangSelector from '../LangSelector'
 import Jumbotron from '../Jumbotron'
 import styles from './main.module.css'
 
-function Main({ data, showPlayer, location }) {
+function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
   if (!data) return <div />
   const { cContacts, cNews, cProject } = data
   const isJumbo = location.pathname !== process.env.REACT_APP_HOME
@@ -38,10 +38,18 @@ function Main({ data, showPlayer, location }) {
     )
 
   return (
-    <div className={styles.grid__wrapper}>
-      <Header className={styles.grid__header} location={location} />
-      {isJumbo && <Jumbotron pathname={location.pathname} className={styles.grid__jumbo} />}
-      <main className={isJumbo ? styles.grid__content : styles.grid__main}>
+    <div className={styles.wrapper}>
+      <Header
+        className={`${styles.header} ${styles.resp__header} ${
+          showMenu ? styles.resp__header_show : styles.resp__header_hide
+        }`}
+        location={location}
+      />
+      <button type="button" className={styles.menu__button} onClick={toggleMenu(null)}>
+        <MenuImg />
+      </button>
+      {isJumbo && <Jumbotron pathname={location.pathname} className={styles.jumbo} />}
+      <main className={isJumbo ? styles.content : styles.main}>
         <Switch>
           <Route path={process.env.REACT_APP_HOME} component={Home} />
           <Route path="/biography" component={Biography} />
@@ -58,8 +66,7 @@ function Main({ data, showPlayer, location }) {
         {showPlayer && isJumbo && <div className={styles['content-margin']} />}
       </main>
       {showPlayer && <AudioPlayer autoplay />}
-      {/* className={styles.grid__player} */}
-      <ListenButton />
+      {/* className={styles.player} */}
       <LangSelector />
     </div>
   )

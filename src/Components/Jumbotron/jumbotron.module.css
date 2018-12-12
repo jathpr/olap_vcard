@@ -1,11 +1,6 @@
 @value white-full, black-dark, grey-cool from "styles/share/colors.css";
 
 .container {
-  background-color: grey-cool;
-  position: fixed;
-  width: 100%;
-  margin-left: 33vw;
-  height: 15%;
 }
 
 .text {

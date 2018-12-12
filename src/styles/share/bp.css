@@ -1,3 +1,4 @@
-@value small: (max-width: 599px);
-@value medium: (min-width: 600px) and (max-width: 959px);
-@value large: (min-width: 960px);
+@value small: screen and (max-width: 599px);
+@value medium: screen and (min-width: 600px) and (max-width: 959px);
+@value large: screen and (min-width: 960px) and (max-width: 1199px);
+@value x-large: screen and (min-width: 1200px);

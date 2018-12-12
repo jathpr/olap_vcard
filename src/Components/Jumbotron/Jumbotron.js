@@ -43,7 +43,11 @@ function Jumbotron({ pathname, cHome, cHeader, cProject, className }: Props) {
     title = cHeader[arr[0]].toUpperCase()
   return (
     <div className={`${className} ${styles.container}`}>
-      <div className={`${styles.text} ${styles.text__name}`}>{cHome.name.toUpperCase()}</div>
+      <div className={`${styles.text} ${styles.text__name}`}>
+        {/* <a href="https://podolatest.firebaseapp.com/home" target="_blank" rel="noopener noreferrer"> */}
+        {cHome.name.toUpperCase()}
+        {/* </a> */}
+      </div>
       <div className={`${styles.text} ${styles.text__about}`}>{cHome.fewWords.toUpperCase()}</div>
       <div className={`${styles.text} ${styles.text__title}`}>{title}</div>
     </div>
