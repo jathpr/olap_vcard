@@ -28,17 +28,21 @@ class ReactSwipe extends Component {
     swipeOptions: {},
     style: {
       container: {
+        width: '400px',
         overflow: 'hidden',
         visibility: 'hidden',
         position: 'relative',
+        display: 'inline-block',
       },
       wrapper: {
+        width: '300px',
         overflow: 'hidden',
         position: 'relative',
       },
       child: {
         float: 'left',
-        width: '100%',
+        width: '200px',
+        height: '200px',
         position: 'relative',
         transitionProperty: 'transform',
       },

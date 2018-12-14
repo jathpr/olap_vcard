@@ -12,6 +12,7 @@ import Article from '../Routes/Article'
 import AudioPlayer from '../Player/AudioPlayer'
 import LangSelector from '../LangSelector'
 import Jumbotron from '../Jumbotron'
+import ReactSwipe from '../SwipeFirst'
 import styles from './main.module.css'
 
 function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
@@ -39,6 +40,12 @@ function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
 
   return (
     <div className={styles.wrapper}>
+      <ReactSwipe className="carousel" swipeOptions={{ continuous: false }}>
+        <div>PANE 1</div>
+        <div>PANE 2</div>
+        <div>PANE 3</div>
+      </ReactSwipe>
+      <div style={{ backgroundColor: 'red', display: 'inline-block', width: 200, height: 200 }} />
       <Header
         className={`${styles.header} ${styles.resp__header} ${
           showMenu ? styles.resp__header_show : styles.resp__header_hide
