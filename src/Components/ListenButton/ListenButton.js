@@ -16,7 +16,7 @@ function ListenButton({ showPlayer, cPlayer, togglePlayer }: Props) {
   return (
     <div className={styles.container}>
       {!showPlayer && (
-        <button type="button" className={`${styles['listen-button']}`} onClick={togglePlayer}>
+        <button type="button" className={`${styles['listen-button']}`} onClick={togglePlayer(true)}>
           <Play />
           <span className={styles['listen-button__text']}>{cPlayer && cPlayer.listen}</span>
         </button>

@@ -13,7 +13,14 @@ import PrevTrack from '../PrevTrack'
 import NextTrack from '../NextTrack'
 import SeekBar from '../SeekBar'
 
-function VideoPlayer({ tracks, currentVideo, isVideoPlaying, playPauseVideo, setVideo }) {
+function VideoPlayer({
+  tracks,
+  currentVideo,
+  isVideoPlaying,
+  playPauseVideo,
+  setVideo,
+  isVideoInnerState,
+}) {
   const handlePrevTrack = () => {
     const newTrack = currentVideo - 1
     setVideo(newTrack >= 0 ? newTrack : tracks.length - 1)
@@ -24,14 +31,19 @@ function VideoPlayer({ tracks, currentVideo, isVideoPlaying, playPauseVideo, set
     setVideo(newTrack < tracks.length ? newTrack : 0)
   }
   const currentTrack = tracks[currentVideo]
-  let ins = true // hook for work both redux and local media state
+
+  let isInit = true
   return (
     <Media>
       {mediaProps => {
-        if (!mediaProps.isLoading && (mediaProps.currentTime !== mediaProps.duration || ins))
-          if (isVideoPlaying) mediaProps.play()
-          else mediaProps.pause()
-        ins = false
+        if (
+          isInit &&
+          !isVideoInnerState &&
+          !mediaProps.isLoading &&
+          mediaProps.isPlaying !== isVideoPlaying
+        )
+          mediaProps.playPause()
+        isInit = false
         return (
           <div
             role="button"
@@ -42,9 +54,15 @@ function VideoPlayer({ tracks, currentVideo, isVideoPlaying, playPauseVideo, set
               role="button"
               tabIndex="0"
               className="media-player-element"
-              onKeyDown={playPauseVideo(!isVideoPlaying)}
-              onClick={playPauseVideo(!isVideoPlaying)}>
-              <Player src={currentTrack.src} onEnded={playPauseVideo(false)} />
+              onKeyDown={() => playPauseVideo(!isVideoPlaying, false)}
+              onClick={() => playPauseVideo(!isVideoPlaying, false)}>
+              <Player
+                src={currentTrack.src}
+                onEnded={() => playPauseVideo(false, true)}
+                onPlay={() => playPauseVideo(true, true)}
+                onPause={() => (isVideoInnerState ? playPauseVideo(false, true) : undefined)}
+                autoPlay={isVideoPlaying}
+              />
             </div>
             <div className="video-controls media-controls--full">
               <div className="media-row">
@@ -66,7 +84,7 @@ function VideoPlayer({ tracks, currentVideo, isVideoPlaying, playPauseVideo, set
                   />
                   <PlayPause
                     isPlaying={isVideoPlaying}
-                    playPauseAudio={isVideoPlaying ? playPauseVideo(false) : playPauseVideo(true)}
+                    // playPauseAudio={isVideoPlaying ? playPauseVideo(false) : playPauseVideo(true)}
                     className="media-control media-control--play-pause"
                   />
                   <NextTrack

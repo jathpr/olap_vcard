@@ -5,6 +5,7 @@
 
 .wrapper {
   height: 100vh;
+  overflow-x: hidden;
   background-color: grey-cool;
 }
 
@@ -14,6 +15,7 @@
   width: header-width;
   height: 100vh;
   z-index: 8;
+  overflow-y: auto;
 }
 
 .main {
@@ -23,9 +25,7 @@
   height: 100vh;
 }
 
-.content {
-  z-index: 8;
-  margin-left: header-width;
+.main_content {
   padding-top: jumbotron-height;
 }
 
@@ -64,18 +64,10 @@
   .menu__button {
     display: block;
   }
-  /* 
-  .header {
-    display: block;
-  } */
 
   .main {
-    margin-left: 0;
-  }
-
-  .content {
-    margin-left: 0;
-    padding-top: jumbotron-height;
+    /* margin-left: 0; */
+    transition: 0.5s;
   }
 
   .jumbo {
@@ -85,17 +77,50 @@
     height: jumbotron-height;
   }
 
-  .resp__header {
+  .header {
     z-index: 10;
-    width: 30%;
-    min-width: 200px;
+    width: 30vw;
+    transition: 0.5s;
   }
 
-  .resp__header_show {
-    display: flex;
+  .header_show {
+    left: 0;
   }
 
-  .resp__header_hide {
-    display: none;
+  .header_hide {
+    left: -30vw;
+  }
+
+  .main_full {
+    margin-left: 50px;
+  }
+
+  .main_part {
+    margin-left: 30vw;
+  }
+}
+
+@media small {
+  .header {
+    z-index: 10;
+    width: 200px;
+    transition: 0.5s;
+  }
+
+  .header_show {
+    left: 0;
+  }
+
+  .main {
+    transition: 0.5s;
+    width: calc(100vw - 50px);
+  }
+
+  .header_hide {
+    margin-left: calc(50px - 200px);
+  }
+
+  .main_part {
+    margin-left: 200px;
   }
 }

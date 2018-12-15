@@ -12,7 +12,9 @@ import Article from '../Routes/Article'
 import AudioPlayer from '../Player/AudioPlayer'
 import LangSelector from '../LangSelector'
 import Jumbotron from '../Jumbotron'
-import ReactSwipe from '../SwipeFirst'
+// import ReactSwipe from '../SwipeFirst'
+// import ListenButton from '../ListenButton'
+// import ReactSwipe from '../SwipeTabs'
 import styles from './main.module.css'
 
 function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
@@ -40,23 +42,21 @@ function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
 
   return (
     <div className={styles.wrapper}>
-      <ReactSwipe className="carousel" swipeOptions={{ continuous: false }}>
-        <div>PANE 1</div>
-        <div>PANE 2</div>
-        <div>PANE 3</div>
-      </ReactSwipe>
-      <div style={{ backgroundColor: 'red', display: 'inline-block', width: 200, height: 200 }} />
+      {/* <ReactSwipe /> */}
+      {/* <div style={{ backgroundColor: 'red', display: 'inline-block', width: 200, height: 200 }} /> */}
       <Header
-        className={`${styles.header} ${styles.resp__header} ${
-          showMenu ? styles.resp__header_show : styles.resp__header_hide
-        }`}
+        className={`${styles.header} ${showMenu ? styles.header_show : styles.header_hide}`}
         location={location}
       />
-      <button type="button" className={styles.menu__button} onClick={toggleMenu(null)}>
+      <button type="button" className={styles.menu__button} onClick={toggleMenu(!showMenu)}>
         <MenuImg />
       </button>
+      {/* <ListenButton /> */}
       {isJumbo && <Jumbotron pathname={location.pathname} className={styles.jumbo} />}
-      <main className={isJumbo ? styles.content : styles.main}>
+      <main
+        className={`${styles.main} ${isJumbo && styles.main_content} ${
+          showMenu ? styles.main_part : styles.main_full
+        }`}>
         <Switch>
           <Route path={process.env.REACT_APP_HOME} component={Home} />
           <Route path="/biography" component={Biography} />
@@ -72,7 +72,7 @@ function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
         </Switch>
         {showPlayer && isJumbo && <div className={styles['content-margin']} />}
       </main>
-      {showPlayer && <AudioPlayer autoplay />}
+      <AudioPlayer showPlayer={showPlayer} />
       {/* className={styles.player} */}
       <LangSelector />
     </div>

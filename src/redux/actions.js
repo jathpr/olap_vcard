@@ -56,24 +56,24 @@ export const toggleMenu = newState => ({
   payload: { newState },
 })
 
-export const setTrack = track => ({
+export const setTrack = (track, isInnerState) => ({
   type: PLAYER_SET_TRACK,
-  payload: track,
+  payload: { track, isInnerState: isInnerState || false },
 })
 
-export const setVideo = track => ({
+export const setVideo = (track, isInnerState) => ({
   type: VIDEO_SET_TRACK,
-  payload: track,
+  payload: { track, isInnerState: isInnerState || false },
 })
 
-export const playPause = isPlay => ({
+export const playPause = (isPlay, isInnerState) => ({
   type: PLAYER_PLAY_PAUSE,
-  payload: isPlay,
+  payload: { isPlay, isInnerState: isInnerState || false },
 })
 
-export const videoPlayPause = isPlay => ({
+export const videoPlayPause = (isPlay, isInnerState) => ({
   type: VIDEO_PLAY_PAUSE,
-  payload: isPlay,
+  payload: { isPlay, isInnerState: isInnerState || false },
 })
 
 const dataLoading = () => ({

@@ -1,8 +1,9 @@
 @value black-full from "styles/share/colors.css";
+@value small, medium, large from "styles/share/bp.css";
 
 .container {
   height: 36px;
-  margin-top: 20%;
+  margin-top: 15vh;
 }
 
 .listen-button {

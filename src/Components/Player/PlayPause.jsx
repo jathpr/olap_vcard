@@ -1,7 +1,8 @@
 import React from 'react'
+import withMediaProps from 'react-media-player/lib/decorators/with-media-props'
 import Scale from '../Scale'
 
-function PlayPause({ isPlaying, className, playPauseAudio }) {
+function PlayPause({ isPlaying, className, media }) {
   return (
     <svg
       style={{ flexShrink: 0 }}
@@ -10,7 +11,7 @@ function PlayPause({ isPlaying, className, playPauseAudio }) {
       height="36px"
       viewBox="0 0 36 36"
       className={className}
-      onClick={playPauseAudio}>
+      onClick={() => media.playPause()}>
       <circle fill="#373D3F" cx="18" cy="18" r="18" />
       <Scale time={0.5} isShow={isPlaying}>
         <g key="pause" style={{ transformOrigin: '0% 50%' }}>
@@ -30,4 +31,4 @@ function PlayPause({ isPlaying, className, playPauseAudio }) {
   )
 }
 
-export default PlayPause
+export default withMediaProps(PlayPause)

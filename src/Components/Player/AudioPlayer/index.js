@@ -7,13 +7,14 @@ const mapStateToProps = (state, props) => ({
   player: state.content.data.cPlayer,
   src: state.content.data.cAllMusic,
   isPlaying: state.player.isPlaying,
+  isInnerState: state.player.isInnerState,
   currentTrack: state.player.currentTrack,
 })
 
 const mapDispatchToProps = dispatch => ({
   togglePlayer: showPlayer => dispatch(togglePlayer(showPlayer)),
-  setTrack: track => dispatch(setTrack(track)),
-  playPauseAudio: isPlay => () => dispatch(playPause(isPlay)),
+  setTrack: track => dispatch(setTrack(track, true)),
+  playPauseAudio: isPlay => dispatch(playPause(isPlay, true)),
 })
 
 export default connect(

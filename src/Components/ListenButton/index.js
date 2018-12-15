@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  togglePlayer: showPlayer => dispatch(togglePlayer(showPlayer)),
+  togglePlayer: showPlayer => () => dispatch(togglePlayer(showPlayer)),
 })
 
 export default connect(
