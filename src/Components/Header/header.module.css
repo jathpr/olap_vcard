@@ -1,4 +1,5 @@
 @value black-full, link-hover from "styles/share/colors.css";
+@value small, medium, large from "styles/share/bp.css";
 
 .header {
   align-items: center;
@@ -27,16 +28,22 @@
   letter-spacing: 1.8px;
   color: black-full;
   text-align: left;
-  text-decoration: underline;
+  text-decoration: none;
+  /* text-transform: uppercase; */
+}
+
+.nav__link:focus {
+  outline: none;
 }
 
 .nav__link_active {
+  /* color: white; */
 }
 
 .button-social {
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   margin: 5px;
   padding: 0;
   color: #fff;
@@ -48,11 +55,41 @@
 
 .button-social__container {
   display: block;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
 }
 
 .button-social:hover {
   color: #fff;
   background-color: #5a6268;
   border-color: #545b62;
+}
+
+.button-connect {
+  text-decoration: none;
+  display: none;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.button-connect_email {
+  padding: 4px;
+}
+
+.button-connect_phone {
+  line-height: 46px;
+}
+
+.text-connect {
+  /* width: 200px; */
+  margin-bottom: 1vh;
+}
+
+@media medium, small {
+  .button-connect {
+    display: inline-block;
+  }
+
+  .text-connect {
+    display: none;
+  }
 }

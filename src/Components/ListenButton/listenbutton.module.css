@@ -3,7 +3,11 @@
 
 .container {
   height: 36px;
-  margin-top: 15vh;
+  margin-top: 10vh;
+}
+
+.container__marg {
+  margin-top: calc(10vh + 60px);
 }
 
 .listen-button {

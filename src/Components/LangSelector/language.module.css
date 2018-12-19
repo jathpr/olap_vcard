@@ -1,5 +1,6 @@
 @value dark, white-full from "styles/share/colors.css";
 @value lang-button-side-size: 50px;
+@value small, medium, large from "styles/share/bp.css";
 
 .lang__button {
   composes: button__empty button__link from global;
@@ -13,9 +14,21 @@
 .lang__container {
   position: fixed;
   top: 0;
-  left: 80vw;
+  left: 86vw;
   display: flex;
   justify-content: space-between;
   width: calc(lang-button-side-size * 2 + 10px);
   z-index: 20;
+}
+
+@media medium {
+  .lang__container {
+    left: 80vw;
+  }
+}
+
+@media small {
+  .lang__container {
+    left: 64vw;
+  }
 }

@@ -1,7 +1,7 @@
 @value grey-cool, dark, white-full from "styles/share/colors.css";
 @value small, medium, large from "styles/share/bp.css";
-@value header-width: 33vw;
-@value jumbotron-height: 15vh;
+@value header-width: 27vw;
+@value jumbotron-height: 60px;
 
 .wrapper {
   height: 100vh;
@@ -34,7 +34,7 @@
   background-color: grey-cool;
   position: fixed;
   margin-left: header-width;
-  width: 100%;
+  width: calc(100vw - header-width);
   height: jumbotron-height;
 }
 

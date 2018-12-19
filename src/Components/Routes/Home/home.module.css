@@ -18,7 +18,7 @@
   font-stretch: normal;
   /* line-height: 1; */
   color: black-dark;
-  word-spacing: 100vw;
+  /* word-spacing: 100vw; */
   width: 250px;
 }
 
@@ -27,9 +27,9 @@
   font-size: 36px;
   letter-spacing: 3.6px;
   color: black-dark;
-  text-align: end;
+  /* text-align: end; */
   position: absolute;
-  left: -250px;
+  /* left: -250px; */
 }
 
 .text__about {
@@ -37,6 +37,6 @@
   font-size: 18px;
   letter-spacing: 1.8px;
   color: white-full;
-  margin-top: 0.4em;
+  margin-top: 70px;
   position: absolute;
 }

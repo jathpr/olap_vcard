@@ -14,7 +14,7 @@ type Props = {
 
 function ListenButton({ showPlayer, cPlayer, togglePlayer }: Props) {
   return (
-    <div className={styles.container}>
+    <div className={!showPlayer ? styles.container : styles.container__marg}>
       {!showPlayer && (
         <button type="button" className={`${styles['listen-button']}`} onClick={togglePlayer(true)}>
           <Play />

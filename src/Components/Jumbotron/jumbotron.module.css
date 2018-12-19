@@ -13,7 +13,7 @@
   font-stretch: normal;
   color: black-dark;
   word-spacing: 100vw;
-  width: 300px;
+  width: 200px;
 }
 
 .text__name {
@@ -21,8 +21,8 @@
   letter-spacing: 3.6px;
   color: black-dark;
   text-align: end;
-  float: left;
-  left: 300px;
+  float: right;
+  /* left: 300px; */
 }
 
 .text__about {
@@ -30,7 +30,8 @@
   letter-spacing: 1.8px;
   color: white-full;
   margin-top: 0.4em;
-  float: left;
+  float: right;
+  margin-right: calc(50% - 200px);
 }
 
 .text__title {

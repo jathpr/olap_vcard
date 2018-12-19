@@ -11,7 +11,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   dispatch(getContent())
-  return { toggleMenu: showMenu => () => dispatch(toggleMenu(showMenu)) } // use null value to change state from current
+  return {
+    toggleMenu: showMenu => () => dispatch(toggleMenu(showMenu)), // use null value to change state from current
+  }
 }
 
 export default withRouter(

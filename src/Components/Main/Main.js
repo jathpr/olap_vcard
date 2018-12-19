@@ -5,7 +5,7 @@ import Home from '../Routes/Home'
 import Biography from '../Routes/Biography'
 import News from '../Routes/News'
 import Music from '../Routes/Music'
-import Contacts from '../Routes/Contacts'
+// import Contacts from '../Routes/Contacts'
 import Projects from '../Routes/Projects'
 import Header from '../Header'
 import Article from '../Routes/Article'
@@ -19,7 +19,7 @@ import styles from './main.module.css'
 
 function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
   if (!data) return <div />
-  const { cContacts, cNews, cProject } = data
+  const { cNews, cProject } = data
   const isJumbo = location.pathname !== process.env.REACT_APP_HOME
 
   const ProjectNews = param => {
@@ -39,6 +39,7 @@ function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
         data={cNews.filter(article => article.urlName === param.match.params.articleUrl)[0]}
       />
     )
+  // const isSmallScreen = window.innerWidth < 600
 
   return (
     <div className={styles.wrapper}>
@@ -64,7 +65,7 @@ function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
           {/* <Route path="/concert_music" component={() => <Music data={cConcert} />} />
           <Route path="/film_music" component={() => <Music data={cFilm} />} /> */}
           <Route path="/music" component={Music} />
-          <Route path="/contacts" component={() => <Contacts data={cContacts} />} />
+          {/* <Route path="/contacts" component={() => <Contacts data={cContacts} />} /> */}
           <Route exact path="/projects" component={Projects} />
           <Route path="/projects/:projectUrl" component={ProjectNews} />
           <Route path="/articles/:articleUrl" component={ArticlePage} />

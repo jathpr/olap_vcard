@@ -4,7 +4,7 @@ import AudioPlayer from './AudioPlayer'
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  player: state.content.data.cPlayer,
+  cPlayer: state.content.data.cPlayer,
   src: state.content.data.cAllMusic,
   isPlaying: state.player.isPlaying,
   isInnerState: state.player.isInnerState,

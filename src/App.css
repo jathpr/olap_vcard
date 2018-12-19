@@ -40,3 +40,7 @@
   border: none;
   outline: 1px solid black;
 }
+
+.element_hide {
+  display: none;
+}
