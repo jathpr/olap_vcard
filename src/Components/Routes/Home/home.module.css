@@ -1,4 +1,5 @@
 @value white-full, black-dark from "styles/share/colors.css";
+@value small, medium, large from "styles/share/bp.css";
 
 .image {
   /* composes: grid__main from global; */
@@ -39,4 +40,29 @@
   color: white-full;
   margin-top: 70px;
   position: absolute;
+}
+
+@media small {
+  .text__name {
+    display: none;
+    /* font-size: 5vw; */
+    /* color: #d4cccc; */
+    /* background-color: #afb1b7; */
+    /* width: 100vw; */
+    /* height: 50px; */
+    /* text-align: center; */
+    /* line-height: 50px; */
+    /* border-right: 3px solid #000; */
+    /* border-left: 3px solid #000; */
+    /* margin: 0 50px; */
+    /* text-transform: uppercase; */
+  }
+
+  .text__about {
+    display: none;
+    /* font-size: 5vw; */
+    /* margin-top: 50px; */
+    /* right: 0; */
+    /* width: unset; */
+  }
 }

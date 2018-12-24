@@ -1,5 +1,9 @@
+@value small, medium, large from "styles/share/bp.css";
+
 .arrow {
   composes: button__empty from global;
+  height: 40vh;
+  width: 20vw;
 }
 
 .arrow_left {
@@ -36,9 +40,43 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0 50px;
+  padding: 20px 10px;
 }
 
 .items {
   display: block;
+}
+
+.root {
+  padding: 0 20vw;
+  margin: 0 10px;
+}
+
+.slide {
+  /* padding: 24px 16px; */
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  transition: 0.5s;
+  overflow: hidden;
+  height: 100%;
+}
+
+.slide_middle {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slide_side {
+  opacity: 0.9;
+  transform: scale(0.7);
+}
+
+@media small {
+  .root {
+    padding: 0;
+    margin: 0;
+  }
 }

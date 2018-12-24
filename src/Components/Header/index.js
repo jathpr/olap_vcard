@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { toggleMenu } from 'redux/actions'
 import Header from './Header'
 
 const mapStateToProps = (state, props) => ({
@@ -7,4 +8,11 @@ const mapStateToProps = (state, props) => ({
   isPlayerVisible: state.player.isPlayerVisible,
 })
 
-export default connect(mapStateToProps)(Header)
+const mapDispatchToProps = dispatch => ({
+  toggleMenu: showMenu => () => dispatch(toggleMenu(showMenu)), // use null value to change state from current
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header)

@@ -18,6 +18,7 @@
   display: flex;
   justify-content: space-between;
   width: calc(lang-button-side-size * 2 + 10px);
+  flex-direction: row-reverse;
   z-index: 20;
 }
 
@@ -29,6 +30,7 @@
 
 @media small {
   .lang__container {
-    left: 64vw;
+    right: 0;
+    left: unset;
   }
 }

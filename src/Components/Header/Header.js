@@ -10,6 +10,7 @@ import styles from './header.module.css'
 type Props = {
   className: string,
   isPlayerVisible: boolean,
+  toggleMenu: Function,
   data: {
     home: string,
     biography: string,
@@ -30,24 +31,35 @@ type Props = {
 
 Modal.setAppElement('#root')
 
-function Header({ data, className, isPlayerVisible }: Props) {
+function Header({ data, className, isPlayerVisible, toggleMenu }: Props) {
+  // const toggleMenu = e => {
+  //   if (e) {
+  //     e.preventDefault()
+  //   }
+  //   this.setState({ collapsed: !this.state.collapsed })
+  // }
+
   return (
     <header className={`${className} ${styles.header}`}>
       <ListenButton />
       <nav className={styles.nav}>
-        <NavLink activeClassName={styles.nav__link_active} className={styles.nav__link} to="/home">
+        <NavLink
+          activeClassName={styles.nav__link_active}
+          className={styles.nav__link}
+          to="/home"
+          onClick={toggleMenu(false)}>
           {data.home}
         </NavLink>
-        <NavLink className={styles.nav__link} to="/biography">
+        <NavLink className={styles.nav__link} to="/biography" onClick={toggleMenu(false)}>
           {data.biography}
         </NavLink>
-        <NavLink className={styles.nav__link} to="/projects">
+        <NavLink className={styles.nav__link} to="/projects" onClick={toggleMenu(false)}>
           {data.projects}
         </NavLink>
-        <NavLink className={styles.nav__link} to="/news">
+        <NavLink className={styles.nav__link} to="/news" onClick={toggleMenu(false)}>
           {data.news}
         </NavLink>
-        <NavLink className={styles.nav__link} to="/music">
+        <NavLink className={styles.nav__link} to="/music" onClick={toggleMenu(false)}>
           {data.music}
         </NavLink>
       </nav>

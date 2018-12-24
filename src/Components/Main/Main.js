@@ -53,7 +53,7 @@ function Main({ data, showPlayer, location, toggleMenu, showMenu }) {
         <MenuImg />
       </button>
       {/* <ListenButton /> */}
-      {isJumbo && <Jumbotron pathname={location.pathname} className={styles.jumbo} />}
+      <Jumbotron pathname={location.pathname} className={styles.jumbo} />
       <main
         className={`${styles.main} ${isJumbo && styles.main_content} ${
           showMenu ? styles.main_part : styles.main_full

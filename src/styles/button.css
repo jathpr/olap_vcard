@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+.button__empty:focus {
+  outline: none;
+}
+
 .button__link:hover {
   color: link-hover;
 }

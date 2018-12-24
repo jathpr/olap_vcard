@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 // import UncontrolledCollapse from 'reactstrap/lib/UncontrolledCollapse'
 import Link from 'react-router-dom/Link'
 import Collapse from 'Components/Collapse/Collapse'
@@ -35,7 +35,11 @@ type Props = {
 
 function Biography({ data }: Props) {
   const [isAudioOpen, setIsAudioOpen] = useState(false)
-  const [isPressOpen, setIsPressOpen] = useState(true)
+  const [isPressOpen, setIsPressOpen] = useState(false)
+  const refToBottom = useRef(null)
+  // useLayoutEffect(() => {
+  //   refToBottom.current.scrollIntoView()
+  // })
 
   const listAudio = data.listAudio.map(element => <li key={element}>{element}</li>)
   const listPublications = data.listPublications.map(element => <li key={element}>{element}</li>)
@@ -81,20 +85,37 @@ function Biography({ data }: Props) {
       <Carousel>{photos}</Carousel>
       {/* <div className={style.text__container}>{data.biography}</div> */}
       <div className={style.text__container} dangerouslySetInnerHTML={parse(data.biography)} />
-      <div className={style.text__container}>
-        <button type="button" onClick={() => setIsAudioOpen(!isAudioOpen)} className={style.button}>
-          {data.btnListAudio}
-        </button>
-        <button type="button" onClick={() => setIsPressOpen(!isPressOpen)} className={style.button}>
-          {data.btnListPublications}
-        </button>
-        <Collapse toggler={isAudioOpen}>
-          <ul>{listAudio}</ul>
-        </Collapse>
-        <Collapse toggler={isPressOpen}>
-          <ul>{listPublications}</ul>
-        </Collapse>
+      <div className={style.button__container}>
+        <div className={style.list__container}>
+          <button
+            type="button"
+            onClick={() => {
+              setIsAudioOpen(!isAudioOpen)
+              setTimeout(() => refToBottom.current.scrollIntoView(), 150)
+            }}
+            className={style.button}>
+            {data.btnListAudio}
+          </button>
+          <Collapse toggler={isAudioOpen}>
+            <ul>{listAudio}</ul>
+          </Collapse>
+        </div>
+        <div className={style.list__container}>
+          <button
+            type="button"
+            onClick={() => {
+              setIsPressOpen(!isPressOpen)
+              setTimeout(() => refToBottom.current.scrollIntoView(), 150)
+            }}
+            className={style.button}>
+            {data.btnListPublications}
+          </button>
+          <Collapse toggler={isPressOpen}>
+            <ul ref={refToBottom}>{listPublications}</ul>
+          </Collapse>
+        </div>
       </div>
+      <div />
     </div>
   )
 }

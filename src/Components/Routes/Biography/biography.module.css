@@ -1,4 +1,5 @@
 @value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
+@value small, medium, large from "styles/share/bp.css";
 
 .container {
   background-color: white-full;
@@ -14,18 +15,53 @@
 
 .text__container {
   margin: 10px;
+  padding-right: 40px;
+  padding-left: 10px;
+}
+
+.list__container {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button__container {
+  display: flex;
+  justify-content: space-around;
 }
 
 .button {
   margin-bottom: 1rem;
-  margin-left: 35px;
+  /* margin-left: 35px; */
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  /* margin: 5px; */
+  padding: 0;
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }
 
 .text__container p {
   margin-top: 0;
-  margin-bottom: 1rem;
-  padding: 10px 40px;
+  margin-bottom: 0.1em;
+  /* padding: 0 40px; */
   text-align: justify;
+  text-indent: 30px;
+}
+
+.text__container ul {
+  list-style-type: none;
+  margin-top: 0.3em;
+  padding: 0;
+}
+
+.text__container ul p {
+  /* text-indent: 0; */
+  /* padding: 0; */
 }
 
 @value cross-size 50px;
@@ -63,4 +99,34 @@
 
 .close::after {
   transform: rotate(-45deg);
+}
+
+@media medium, small {
+  .text__container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+@media small {
+  .text__container {
+    margin: 10px;
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  .button__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .list__container {
+    max-width: 90vw;
+  }
+
+  .button {
+    align-self: center;
+  }
 }

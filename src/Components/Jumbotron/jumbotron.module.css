@@ -1,6 +1,11 @@
 @value white-full, black-dark, grey-cool from "styles/share/colors.css";
+@value small, medium, large from "styles/share/bp.css";
 
 .container {
+}
+
+.container_main {
+  display: none;
 }
 
 .text {
@@ -44,4 +49,30 @@
   position: absolute;
   bottom: 10px;
   word-spacing: initial;
+}
+
+@media small {
+  .container_main {
+    display: block;
+  }
+
+  .text__about {
+    display: none;
+  }
+
+  .text__name {
+    /* text-align: center; */
+    margin-right: 50px;
+    width: 100%;
+    line-height: 20px;
+  }
+
+  .text__title {
+    left: 50px;
+    /* bottom: 0px; */
+    bottom: 0;
+    /* top: 26px; */
+    line-height: 22px;
+    font-size: 16px;
+  }
 }

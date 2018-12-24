@@ -5,6 +5,7 @@ import LangSelector from './LangSelector'
 const mapStateToProps = state => ({
   firstLang: state.content.data.cHeader.russian,
   secondLang: state.content.data.cHeader.english,
+  language: state.language,
 })
 
 const mapDispatchToProps = dispatch => ({

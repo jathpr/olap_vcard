@@ -41,15 +41,16 @@ function Jumbotron({ pathname, cHome, cHeader, cProject, className }: Props) {
     })
   } else if (Object.prototype.hasOwnProperty.call(cHeader, arr[0]))
     title = cHeader[arr[0]].toUpperCase()
+  const isMain = pathname === process.env.REACT_APP_HOME
   return (
-    <div className={`${className} ${styles.container}`}>
+    <div className={`${className} ${styles.container} ${isMain && styles.container_main}`}>
       <div className={`${styles.text} ${styles.text__about}`}>{cHome.fewWords.toUpperCase()}</div>
       <div className={`${styles.text} ${styles.text__name}`}>
         {/* <a href="https://podolatest.firebaseapp.com/home" target="_blank" rel="noopener noreferrer"> */}
         {cHome.name.toUpperCase()}
         {/* </a> */}
       </div>
-      <div className={`${styles.text} ${styles.text__title}`}>{title}</div>
+      <div className={`${styles.text} ${styles.text__title}`}>{!isMain && title}</div>
     </div>
   )
 }
