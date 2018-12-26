@@ -5,6 +5,10 @@ import { NavLink } from 'react-router-dom'
 import Link from 'react-router-dom/Link'
 import Modal from 'react-modal'
 import ListenButton from '../ListenButton'
+import { ReactComponent as Mail } from './mail.svg'
+import { ReactComponent as FB } from './facebook.svg'
+import { ReactComponent as Phone } from './phone.svg'
+import { ReactComponent as VK } from './vk.svg'
 import styles from './header.module.css'
 
 type Props = {
@@ -69,34 +73,42 @@ function Header({ data, className, isPlayerVisible, toggleMenu }: Props) {
             styles['button-connect_email']
           }`}
           href={`mailto:${data.eMail}`}>
-          {data.sendEMail}
+          <Mail />
         </a>
         <a
           className={`${styles['button-social']} ${styles['button-connect']} ${
             styles['button-connect_phone']
           }`}
           href={`tel:${data.number}`}>
-          {data.call}
+          <Phone />
         </a>
-        <br />
-        <Link to="//www.facebook.com/olga.podgaiskaja" target="_blank" rel="noopener noreferrer">
+        <Link
+          to="//www.facebook.com/olga.podgaiskaja"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles['link-social']}>
           <button type="button" className={styles['button-social']}>
-            Fb
+            <FB />
           </button>
         </Link>
-        <Link to="//vk.com/id12970969" target="_blank" rel="noopener noreferrer">
+        <Link
+          to="//vk.com/id12970969"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles['link-social']}>
           <button type="button" className={styles['button-social']}>
-            Vk
+            <VK />
           </button>
         </Link>
       </div>
-      <span className={styles['text-connect']}>{data.number}</span> <br />
-      <span
-        className={styles['text-connect']}
-        style={isPlayerVisible ? { marginBottom: '60px' } : null}>
-        {data.eMail}
-      </span>{' '}
-      <br />
+      <div className={styles.text__container}>
+        <span className={styles['text-connect']}>{data.number}</span>
+        {/* <br /> */}
+        <span
+          className={`${styles['text-connect']} ${isPlayerVisible ? styles['margin-bottom'] : ''}`}>
+          {data.eMail}
+        </span>{' '}
+      </div>
     </header>
   )
 }

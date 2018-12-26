@@ -1,5 +1,5 @@
 @value grey-cool, dark, white-full from "styles/share/colors.css";
-@value small, medium, large from "styles/share/bp.css";
+@value small, medium, small-height from "styles/share/bp.css";
 @value header-width: 27vw;
 @value jumbotron-height: 60px;
 
@@ -15,7 +15,7 @@
   width: header-width;
   height: 100vh;
   z-index: 8;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .main {
@@ -67,16 +67,21 @@
 
   .main {
     /* margin-left: 0; */
-    transition: margin 0.5s;
+    /* transition: margin 0.5s; */
   }
 
   .jumbo {
     margin-left: 0;
     width: 100%;
+    height: 50px;
+  }
+
+  .main_content {
+    padding-top: 50px;
   }
 
   .header {
-    z-index: 10;
+    z-index: 15;
     width: 30vw;
     transition: 0.5s;
   }
@@ -86,7 +91,7 @@
   }
 
   .header_hide {
-    left: -30vw;
+    left: -45vw;
   }
 
   .main_full {
@@ -94,13 +99,12 @@
   }
 
   .main_part {
-    margin-left: 30vw;
+    margin-left: 0;
   }
 }
 
 @media small {
   .header {
-    z-index: 10;
     width: 200px;
     transition: 0.5s;
   }
@@ -113,15 +117,7 @@
     margin-left: calc(50px - 200px);
   }
 
-  .main_part {
-    margin-left: 200px;
-  }
-
-  .jumbo {
-    height: 50px;
-  }
-
-  .main_content {
-    padding-top: 50px;
-  }
+  /* .main_part {
+    margin-left: 0;
+  } */
 }

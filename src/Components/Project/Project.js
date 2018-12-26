@@ -26,14 +26,13 @@ function Project({ data }: Props) {
   const alt = data.photo.fields.description
 
   return (
-    <>
-      <Link to={`/projects/${data.urlName}`} className={styles.container}>
-        <img className={styles.image} src={url} alt={alt} />
+    <Link to={`/projects/${data.urlName}`} className={styles.container}>
+      <img className={styles.image} src={url} alt={alt} />
+      <div className={styles.text__container}>
         <h2 className={styles.text__title}>{data.title}</h2>
         <p className={styles.text__body}>{data.about}</p>
-      </Link>
-      <div className={styles.separator} />
-    </>
+      </div>
+    </Link>
   )
 }
 

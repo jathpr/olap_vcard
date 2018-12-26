@@ -2,24 +2,20 @@
 @value marg 2vw;
 
 .container {
-  padding: marg marg 0 marg;
-  /* background-color: red; */
+  padding: 2vw;
   text-decoration: none;
-  float: left;
+  display: flex;
+  background-color: white-full;
+  margin-bottom: 40px;
 }
 
 .image {
   height: 200px;
-  float: left;
-  /* margin: marg; */
-  margin-right: marg;
-  margin-bottom: marg;
+  margin-right: 2vw;
+  align-self: center;
 }
 
-.separator {
-  clear: both;
-  height: 40px;
-  background-color: grey-cool;
+.text__container {
 }
 
 .text__title {
@@ -31,7 +27,7 @@
   letter-spacing: 0.08333333333333333em;
   font-stretch: normal;
   color: black-dark;
-  margin: 10px;
+  margin: 0;
 }
 
 .text__body {
@@ -41,6 +37,4 @@
   font-style: normal;
   line-height: 1em;
   color: black-dark;
-  /* padding-right: marg; */
-  /* margin-left: 340px; */
 }

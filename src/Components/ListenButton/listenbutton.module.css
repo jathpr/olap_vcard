@@ -1,13 +1,12 @@
 @value black-full from "styles/share/colors.css";
-@value small, medium, large from "styles/share/bp.css";
+@value small, medium, small-height, medium-height from "styles/share/bp.css";
 
 .container {
+  position: absolute;
   height: 36px;
-  margin-top: 10vh;
-}
-
-.container__marg {
-  margin-top: calc(10vh + 60px);
+  top: 10vh;
+  width: 100%;
+  text-align: center;
 }
 
 .listen-button {
@@ -25,4 +24,32 @@
   text-align: center;
   letter-spacing: 0.1em;
   color: black-full;
+}
+
+@media medium, small {
+  .container {
+    top: 7vh;
+  }
+}
+
+@media medium-height {
+  .container {
+    position: absolute;
+    width: 30%;
+    top: 10vh;
+    left: 0;
+  }
+
+  .container__marg {
+    margin-top: 0;
+  }
+
+  @media medium, small {
+    .container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      left: unset;
+    }
+  }
 }

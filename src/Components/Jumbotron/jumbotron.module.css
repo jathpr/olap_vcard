@@ -51,6 +51,13 @@
   word-spacing: initial;
 }
 
+@media medium {
+  .text__title {
+    left: 50px;
+    bottom: 0;
+  }
+}
+
 @media small {
   .container_main {
     display: block;

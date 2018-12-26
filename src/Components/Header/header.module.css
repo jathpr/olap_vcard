@@ -1,18 +1,16 @@
 @value black-full, link-hover from "styles/share/colors.css";
-@value small, medium, large from "styles/share/bp.css";
-
-.header {
-  align-items: center;
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
-}
+@value small, medium, large, x-large, small-height, medium-height from "styles/share/bp.css";
 
 .nav {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: absolute;
+  height: 85vh;
+  top: 0;
+  z-index: -1;
+  /* margin-left: 33%; */
+  left: calc(50% - 63px);
 }
 
 .nav__link {
@@ -54,8 +52,13 @@
 }
 
 .button-social__container {
-  display: block;
-  margin-bottom: 10%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 22vh;
+  width: 100%;
+  flex-wrap: wrap;
+  /* text-align: center; */
 }
 
 .button-social:hover {
@@ -84,6 +87,24 @@
   margin-bottom: 1vh;
 }
 
+.margin-bottom {
+  margin-bottom: 60px;
+}
+
+.text__container {
+  position: absolute;
+  bottom: 1vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.link-social {
+  height: 50px;
+  margin-bottom: 4px;
+}
+
 @media medium, small {
   .button-connect {
     display: inline-block;
@@ -91,5 +112,70 @@
 
   .text-connect {
     display: none;
+  }
+
+  .button-social__container {
+    width: 120px;
+    left: calc(50% - 60px);
+    bottom: 20vh;
+  }
+
+  .nav {
+    height: 75vh;
+  }
+}
+
+@media medium-height {
+  @media large, x-large {
+    .button-social__container {
+      width: 30%;
+      bottom: 25vh;
+      flex-direction: column;
+    }
+  }
+
+  @media medium, small {
+    .button-social__container {
+      width: 100%;
+      left: 0;
+      bottom: 20vh;
+    }
+
+    .header {
+      min-width: 250px;
+    }
+  }
+}
+
+@media small-height {
+  .button-social__container {
+    bottom: 20vh;
+  }
+
+  .nav {
+    margin-bottom: 60px;
+  }
+
+  .margin-bottom {
+    margin-bottom: 1vh;
+  }
+
+  @media medium, small {
+    .button-social__container {
+      width: 50px;
+      left: 0;
+      top: 52px;
+      bottom: 0;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .button-social {
+      margin: 2px 0;
+    }
+
+    .link-social {
+      margin-bottom: 4px;
+    }
   }
 }

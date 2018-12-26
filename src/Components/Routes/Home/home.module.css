@@ -42,7 +42,25 @@
   position: absolute;
 }
 
+@media medium {
+  .text__about {
+    margin-top: 120px;
+  }
+
+  .text__name {
+    margin-top: 50px;
+  }
+
+  .image {
+    object-position: 50px 40%;
+  }
+}
+
 @media small {
+  .image {
+    object-position: 50% 30%;
+  }
+
   .text__name {
     display: none;
     /* font-size: 5vw; */
