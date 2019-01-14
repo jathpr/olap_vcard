@@ -1,56 +1,34 @@
 // @flow
 
-import React from 'react'
+import React, { useState } from 'react'
 import Video from '../../Video'
 import style from './music.module.css'
 
 type Props = {
-  cConcert: {
-    title: string,
-    songs: Array<{
+  songList: Array<{
+    src: {
       fields: {
         file: {
           url: string,
         },
-        title: string,
-        description: string,
       },
-      sys: { id: string },
-    }>,
-  },
-  cFilm: {
-    title: string,
-    video: {
-      fields: {
-        file: {
-          url: string,
-        },
-        title: string,
-        description: string,
-      },
-      sys: { id: string },
     },
-    songs: Array<{
+    title: string,
+    id: string,
+    description: string,
+    type: Array<{
       fields: {
-        file: {
-          url: string,
-        },
-        title: string,
-        description: string,
+        type: string,
       },
-      sys: { id: string },
-    }>,
-    videoList: Array<{
-      fields: {
-        file: {
-          url: string,
-        },
-        title: string,
-        description: string,
+      sys: {
+        id: string,
       },
-      sys: { id: string },
     }>,
-  },
+  }>,
+  songsFilters: Array<{
+    type: string,
+    id: string,
+  }>,
   selectTrack: Function,
 }
 
@@ -62,31 +40,55 @@ type Props = {
 //   </audio>
 // )
 
-function Music({ cFilm, cConcert, selectTrack }: Props) {
+function Music({ songList, songsFilters, selectTrack }: Props) {
+  const [filterId, setFilter] = useState(null)
+
   const songsToList = songs =>
     songs.map(element => (
-      <li key={element.sys.id} className={style.song}>
+      <li key={element.id} className={style.song}>
         <button
           type="button"
-          className={`${style.button} button__empty button__link`}
-          onClick={selectTrack(element.fields.title)}>
-          {element.fields.title}
+          className={`${style.button__song} button__empty`}
+          onClick={selectTrack(element.title)}>
+          {element.title}
         </button>
       </li>
     ))
 
-  const filmAudio = songsToList(cFilm.songs)
-  const concertAudio = songsToList(cConcert.songs)
+  const filterSongs = id =>
+    songList.filter(song => song.type.filter(type => type.sys.id === id).length > 0)
+
+  const filters = songsFilters.map(filter => (
+    <button
+      key={filter.id}
+      type="button"
+      className={`${style.button__filter} ${filter.id === filterId &&
+        style.button__filter_active} button__empty button__link`}
+      onClick={() => setFilter(filter.id)}>
+      {filter.type}
+    </button>
+  ))
+
+  const audio = songsToList(filterId ? filterSongs(filterId) : songList)
 
   return (
     <div className={style.container}>
       <div className={style.music_container}>
-        <h2 className={style.title}>{cConcert.title}</h2>
-        <ul>{concertAudio}</ul>
-        <h2 className={style.title}>{cFilm.title}</h2>
-        <ul>{filmAudio}</ul>
+        <div className={style.filters__container}>
+          {filters}
+          <button
+            type="button"
+            disabled={!filterId}
+            className={`${style.button__filter} button__empty button__link`}
+            onClick={() => setFilter(null)}>
+            &times;
+          </button>
+        </div>
+        <ul>{audio}</ul>
       </div>
-      <div className={style.video_container}>{cFilm.video && <Video />}</div>
+      <div className={style.video_container}>
+        <Video />
+      </div>
     </div>
   )
 }

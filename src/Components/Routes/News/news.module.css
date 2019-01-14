@@ -1,5 +1,5 @@
 @value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
 
 .container {
-  background-color: white-full;
+  /* background-color: grey-cool; */
 }

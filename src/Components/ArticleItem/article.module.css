@@ -1,76 +1,73 @@
 @value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
 @value marg 40px;
 @value cross-size 50px;
+@value project-style "../Project/project.module.css";
+@value small, medium, small-height from "styles/share/bp.css";
 
 .container {
-  padding: marg;
-  /* background-color: red; */
-  text-decoration: none;
-  float: left;
+  composes: container from project-style;
+}
+
+.button__container {
+  display: flex;
   width: 100%;
+  border-style: dotted;
+  border-color: #f2f2f2;
+  border-width: 2px;
+}
+
+.button__container:hover {
+  border-color: grey;
 }
 
 .image {
-  height: 200px;
-  float: left;
-  /* margin: marg; */
-  margin-right: marg;
-}
-
-.separator {
-  clear: both;
-  height: 40px;
-  background-color: grey-cool;
+  composes: image from project-style;
+  flex: 0 0 20vw;
+  object-fit: contain;
 }
 
 .text__title {
-  font-family: 'Forum', sans-serif;
-  font-weight: bold;
-  text-align: justify;
+  composes: text__title from project-style;
   font-size: 24px;
-  font-style: normal;
-  line-height: 1em;
-  letter-spacing: 0.08333333333333333em;
-  font-stretch: normal;
-  color: black-dark;
-  margin: 10px;
+  text-align: justify;
 }
 
 .text__body {
-  font-family: 'Open Sans', sans-serif;
-  text-align: justify;
-  font-size: 12px;
-  font-style: normal;
-  line-height: 1em;
-  color: black-dark;
-  padding-right: marg;
+  composes: text__body from project-style;
 }
 
 .text__date {
-  font-family: 'Open Sans', sans-serif;
-  text-align: justify;
-  font-size: 36px;
-  font-style: normal;
-  line-height: 1em;
-  color: black-dark;
-  padding-right: marg;
-  margin: 10px;
+  composes: text__body from project-style;
+  font-size: 30px;
+  margin: 0;
+}
+
+.button__share {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  align-self: flex-end;
+}
+
+.anchor {
+  position: relative;
+  top: calc(-60px - 2vw);
 }
 
 .close {
   position: fixed;
-  right: cross-size;
-  top: cross-size;
+  right: 60px;
+  top: 50px;
   width: cross-size;
   height: cross-size;
-  opacity: 0.3;
+  opacity: 1;
   cursor: pointer;
   padding: 0;
   box-sizing: content-box;
 }
 
 .close:hover {
-  opacity: 1;
+  opacity: 0.6;
 }
 
 .close::before,
@@ -81,7 +78,7 @@
   content: ' ';
   height: cross-size;
   width: 2px;
-  background-color: #333;
+  background-color: #222;
 }
 
 .close::before {
@@ -90,4 +87,110 @@
 
 .close::after {
   transform: rotate(-45deg);
+}
+
+.popup__text {
+  /* width: 560px; */
+  white-space: nowrap;
+  background-color: #626262;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  top: 6px;
+  right: 100%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup__text::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #555;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup_show {
+  visibility: visible;
+  animation: fadeIn 1s;
+}
+
+.popup_hide {
+  visibility: hidden;
+  /* animation: fadeOut 1s; */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media medium {
+  .image {
+    width: 40vw;
+  }
+}
+
+@media small {
+  .button__container {
+    flex-direction: column;
+  }
+
+  .text__title {
+    text-align: center;
+    font-size: 20px;
+    /* margin-top: 10px; */
+  }
+
+  .text__date {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .text__body {
+    font-size: 13px;
+  }
+
+  .image {
+    width: 80vw;
+    height: 300px;
+    max-height: 60vh;
+    /* flex: 0 0 80vw; */
+  }
+}
+
+@media medium {
+  .text__title {
+    font-size: 20px;
+  }
+
+  .text__body {
+  }
+
+  .text__date {
+    font-size: 26px;
+  }
 }

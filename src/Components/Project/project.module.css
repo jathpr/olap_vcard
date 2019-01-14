@@ -1,4 +1,5 @@
 @value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
+@value small, medium, large, x-large, small-height, medium-height from "styles/share/bp.css";
 @value marg 2vw;
 
 .container {
@@ -37,4 +38,19 @@
   font-style: normal;
   line-height: 1em;
   color: black-dark;
+}
+
+@media small {
+  .container {
+    flex-direction: column;
+  }
+
+  .text__title {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .image {
+    margin: 20px;
+  }
 }

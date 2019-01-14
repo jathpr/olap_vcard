@@ -1,18 +1,23 @@
 @value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
+@value small, medium, small-height from "styles/share/bp.css";
 
 .container {
   background-color: white-full;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
+  height: 100%;
 }
 
 .image {
-  /* height: 400px; */
+  max-height: 80vh;
   /* display: inline-block; */
-  width: 63%;
+  max-width: 40%;
   vertical-align: baseline;
-  margin: 1%;
+  /* margin: 1%; */
   float: left;
+  /* object-fit: contain; */
+  /* object-position: top; */
+  margin-right: 10px;
 }
 
 .separator {
@@ -22,16 +27,17 @@
 }
 
 .text__title {
-  font-family: 'Forum', sans-serif;
+  /* font-family: 'Open Sans', sans-serif;
   font-weight: bold;
   text-align: justify;
   font-size: 24px;
   font-style: normal;
   line-height: 1em;
   letter-spacing: 0.08333333333333333em;
-  font-stretch: normal;
+  font-stretch: normal; */
   color: black-dark;
-  margin: 10px;
+  margin: 0 50px;
+  padding-top: 10px;
 }
 
 .text__body {
@@ -41,6 +47,7 @@
   font-style: normal;
   line-height: 1em;
   color: black-dark;
+  /* margin-right: 10px; */
 }
 
 .text__date {
@@ -53,10 +60,45 @@
   margin: 10px;
 }
 
+.about p {
+  text-indent: 30px;
+}
+
+.link {
+  margin-left: 30px;
+}
+
 .map {
-  height: 400px;
+  /* position: absolute; */
+  /* right: 0; */
+  /* bottom: 0; */
+  height: 300px;
   display: inline-block;
   margin: 1%;
-  width: 33%;
+  /* width: 33%; */
   vertical-align: top;
+  float: right;
+}
+
+.head {
+  text-align: center;
+}
+
+@media small-height {
+  .image {
+    max-height: 400px;
+  }
+}
+
+@media small {
+  .image {
+    max-width: 100%;
+    display: block;
+    float: unset;
+    margin: 0 auto;
+  }
+
+  .map {
+    max-width: 100%;
+  }
 }

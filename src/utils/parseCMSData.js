@@ -5,9 +5,11 @@ const CLASS_FOOTER = '3Qo6uU5BmgwCG0ssUKSMQs'
 const CLASS_BIO = '6hsNG0ysGAqcoOceSAswC2'
 const CLASS_CONTACTS = '2kCacjZlC0soym8cWqEKwo'
 const CLASS_PROJECTS = 'project'
-const CLASS_MUSIC_CONCERT = '3Z3hzACNocwS8aIgeUeKci'
-const CLASS_MUSIC_FILM = '63naUalNwAU606mUSciaAy'
+const CLASS_DATA = '6to3c5Di0MIWyguMceiSSw'
 const CLASS_ARTICLES = 'article'
+const CLASS_SONGS = 'song'
+const CLASS_VIDEO = 'video'
+const CLASS_MUSIC_TYPE = 'musicType'
 
 export default function parse(data) {
   let cHeader
@@ -16,8 +18,10 @@ export default function parse(data) {
   let footer
   let cBio
   let cContacts
-  let cConcert
-  let cFilm
+  let cData
+  const cVideo = []
+  const cSongs = []
+  const cMusicTypes = []
   const cProject = []
   const cNews = []
 
@@ -40,8 +44,29 @@ export default function parse(data) {
     if (entry.sys.id === CLASS_CONTACTS) {
       cContacts = entry.fields
     }
+    if (entry.sys.id === CLASS_DATA) {
+      cData = entry.fields
+    }
     if (entry.sys.contentType.sys.id === CLASS_PROJECTS) {
       cProject.push({ ...entry.fields, ...{ id: entry.sys.id } })
+    }
+    if (entry.sys.contentType.sys.id === CLASS_VIDEO) {
+      cVideo.push({
+        ...entry.fields,
+        ...{ id: entry.sys.id },
+      })
+    }
+    if (entry.sys.contentType.sys.id === CLASS_SONGS) {
+      cSongs.push({
+        ...entry.fields,
+        ...{ id: entry.sys.id },
+      })
+    }
+    if (entry.sys.contentType.sys.id === CLASS_MUSIC_TYPE) {
+      cMusicTypes.push({
+        ...entry.fields,
+        ...{ id: entry.sys.id },
+      })
     }
     if (entry.sys.contentType.sys.id === CLASS_ARTICLES) {
       cNews.push({
@@ -49,12 +74,6 @@ export default function parse(data) {
         ...{ id: entry.sys.id },
         ...{ createdAt: entry.sys.createdAt },
       })
-    }
-    if (entry.sys.id === CLASS_MUSIC_CONCERT) {
-      cConcert = entry.fields
-    }
-    if (entry.sys.id === CLASS_MUSIC_FILM) {
-      cFilm = entry.fields
     }
   })
 
@@ -71,9 +90,11 @@ export default function parse(data) {
     cBio,
     cContacts,
     cProject,
-    cConcert,
-    cFilm,
     cNews,
     cAllMusic,
+    cData,
+    cVideo,
+    cSongs,
+    cMusicTypes,
   }
 }
