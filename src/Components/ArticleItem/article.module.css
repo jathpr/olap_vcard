@@ -127,6 +127,28 @@
   /* animation: fadeOut 1s; */
 }
 
+.overlay {
+  z-index: 201;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  outline: none;
+  border: 1px solid #ccc;
+  overflow: auto;
+  background: white-full;
+  border-radius: 4px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

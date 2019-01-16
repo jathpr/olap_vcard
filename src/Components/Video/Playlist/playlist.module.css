@@ -1,0 +1,44 @@
+.vido__list {
+  list-style: none;
+  padding: 0 20px;
+  margin: 0;
+}
+
+.media-playlist-header {
+  padding: 2px;
+  background-color: #373d3f;
+}
+.media-playlist-title {
+  font-size: 16px;
+  text-align: center;
+  margin: 10px;
+}
+.media-playlist {
+  background-color: #282f31;
+  color: #fff;
+}
+/* .media-playlist-tracks {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border: 1px solid #373d3f;
+} */
+.media-player-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 24px;
+}
+.media-playlist-track {
+  padding: 12px;
+  cursor: pointer;
+  border-top: 1px solid #373d3f;
+  text-align: center;
+}
+.media-playlist-track + .media-playlist-track {
+  border-top: 1px solid #373d3f;
+}
+.media-playlist-track.is-active {
+  color: #8bb955;
+}

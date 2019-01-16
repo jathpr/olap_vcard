@@ -34,15 +34,6 @@ type Props = {
 }
 
 Modal.setAppElement('#root')
-const customStyles = {
-  content: {
-    padding: '0',
-    backgroundColor: '#f2f2f2',
-  },
-  overlay: {
-    zIndex: '201',
-  },
-}
 
 function ArticleItem({ data, popupMessage, locale }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -73,7 +64,8 @@ function ArticleItem({ data, popupMessage, locale }: Props) {
         shouldFocusAfterRender
         shouldCloseOnOverlayClick={false}
         isOpen={isModalOpen}
-        style={customStyles}
+        className={styles.modal}
+        overlayClassName={styles.overlay}
         onRequestClose={handleCloseModal}>
         <Article data={data} />
         <button

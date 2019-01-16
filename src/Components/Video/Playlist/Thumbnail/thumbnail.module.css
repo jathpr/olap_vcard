@@ -1,0 +1,27 @@
+.container {
+  position: relative;
+  padding: 10px 0;
+}
+
+.title {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.play {
+  float: left;
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+  padding-left: 5px;
+}
+
+.container:hover .title {
+  display: block;
+}

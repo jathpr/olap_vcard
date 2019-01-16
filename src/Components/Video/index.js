@@ -15,10 +15,12 @@ const mapStateToProps = state =>
   //   }))
   // )
   ({
+    videoTitle: state.content.data.cData.video,
     playlist: state.content.data.cVideo.map(video => ({
       src: video.url,
       label: video.title,
       id: video.id,
+      hosting: video.hosting,
     })),
   })
 

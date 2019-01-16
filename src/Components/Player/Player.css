@@ -28,13 +28,7 @@ body {
   fill: #6e9541;
   stroke-width: 0;
 }
-.media-player-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 640px;
-  margin-bottom: 24px;
-}
+
 .media-player {
   width: 100%;
   max-width: 640px;
@@ -364,37 +358,6 @@ input[type='range']::-ms-thumb:active {
 input[type='range']::-webkit-slider-thumb {
   position: relative;
   top: -2.5px;
-}
-.media-playlist-header {
-  padding: 2px;
-  background-color: #373d3f;
-}
-.media-playlist-title {
-  font-size: 16px;
-  text-align: center;
-  margin: 10px;
-}
-.media-playlist {
-  background-color: #282f31;
-  color: #fff;
-}
-.media-playlist-tracks {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  border: 1px solid #373d3f;
-}
-.media-playlist-track {
-  padding: 12px;
-  cursor: pointer;
-  border-top: 1px solid #373d3f;
-  text-align: center;
-}
-.media-playlist-track + .media-playlist-track {
-  border-top: 1px solid #373d3f;
-}
-.media-playlist-track.is-active {
-  color: #8bb955;
 }
 
 .media-player-col-container {

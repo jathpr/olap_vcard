@@ -6,6 +6,7 @@ import Progress from 'react-media-player/lib/controls/Progress'
 import Duration from 'react-media-player/lib/controls/Duration'
 import Volume from 'react-media-player/lib/controls/Volume'
 import keyboardControls from 'react-media-player/lib/utils/keyboard-controls'
+import style from './video.module.css'
 import PlayPause from '../PlayPause'
 import MuteUnmute from '../MuteUnmute'
 import Fullscreen from '../Fullscreen'
@@ -47,7 +48,9 @@ function VideoPlayer({
         return (
           <div
             role="button"
-            className={`media-player${mediaProps.isFullscreen ? ' media-player--fullscreen' : ''}`}
+            className={`${style.container} ${
+              mediaProps.isFullscreen ? ' media-player--fullscreen' : ''
+            }`}
             onKeyDown={keyboardControls.bind(null, mediaProps)}
             tabIndex="0">
             <div
