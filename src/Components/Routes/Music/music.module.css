@@ -1,4 +1,5 @@
 @value grey-cool, white-full, black-full, black-dark from "styles/share/colors.css";
+@value small, medium, small-height from "styles/share/bp.css";
 
 .container {
   background-color: white-full;
@@ -47,4 +48,10 @@
 
 .button__filter:disabled {
   display: none;
+}
+
+@media small {
+  .container {
+    flex-direction: column;
+  }
 }

@@ -79,4 +79,8 @@
     padding: 0;
     margin: 0;
   }
+
+  .container_pad {
+    padding: 0 10px;
+  }
 }

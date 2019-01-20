@@ -1,6 +1,17 @@
+@value small, medium, small-height from "styles/share/bp.css";
+
 .container {
   width: 50vw;
   max-height: 100vh;
   /* max-width: 640px; */
   position: relative;
+}
+
+@media small {
+  .container {
+    width: 90vw;
+    max-height: 100vh;
+    /* max-width: 640px; */
+    position: relative;
+  }
 }

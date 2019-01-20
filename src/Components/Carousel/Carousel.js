@@ -7,9 +7,10 @@ import styles from './carousel.module.css'
 
 type Props = {
   children: Array<React.Node>,
+  isPadding: boolean,
 }
 
-function Caorusel({ children }: Props) {
+function Caorusel({ children, isPadding }: Props) {
   if (!children) return null
   const [currentItem, setCurrentItem] = React.useState(0)
 
@@ -41,7 +42,7 @@ function Caorusel({ children }: Props) {
   //   ))
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isPadding && styles.container_pad}`}>
       <button
         type="button"
         className={`${styles.arrow} ${styles.arrow_left}`}
