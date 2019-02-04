@@ -8,6 +8,8 @@ type Props = {
   songList: Array<{
     src: {
       fields: {
+        title: string,
+        description: string,
         file: {
           url: string,
         },
@@ -29,6 +31,7 @@ type Props = {
     type: string,
     id: string,
   }>,
+  curentSongTitle: string,
   selectTrack: Function,
 }
 
@@ -40,20 +43,28 @@ type Props = {
 //   </audio>
 // )
 
-function Music({ songList, songsFilters, selectTrack }: Props) {
+function Music({ songList, songsFilters, selectTrack, curentSongTitle }: Props) {
   const [filterId, setFilter] = useState(null)
 
   const songsToList = songs =>
-    songs.map(element => (
-      <li key={element.id} className={style.song}>
-        <button
-          type="button"
-          className={`${style.button__song} button__empty`}
-          onClick={selectTrack(element.title)}>
-          {element.title}
-        </button>
-      </li>
-    ))
+    songs.map(element => {
+      const activeSongStyle =
+        curentSongTitle && curentSongTitle === element.src.fields.title
+          ? style.button__song_active
+          : ''
+      return (
+        <li key={element.id} className={style.song}>
+          <button
+            type="button"
+            className={`${style.button__song} ${activeSongStyle} button__empty`}
+            onClick={selectTrack(element.src.fields.title)}>
+            <span className={style.text__title}>{element.src.fields.title}</span>
+            <br />
+            <span className={style.text__description}>{element.src.fields.description}</span>
+          </button>
+        </li>
+      )
+    })
 
   const filterSongs = id =>
     songList.filter(song => song.type.filter(type => type.sys.id === id).length > 0)

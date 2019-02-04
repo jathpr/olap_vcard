@@ -7,6 +7,8 @@ const mapStateToProps = state => ({
   // cFilm: state.content.data.cFilm,
   songList: state.content.data.cSongs,
   songsFilters: state.content.data.cMusicTypes,
+  curentSongTitle:
+    state.player.isPlaying && state.content.data.cAllMusic[state.player.currentTrack].title,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -26,6 +26,22 @@
   margin-bottom: 15px;
 }
 
+.text__description {
+  font-size: 13px;
+}
+
+.text__title {
+  font-weight: bold;
+}
+
+.button__song {
+  text-align: start;
+}
+
+.button__song_active {
+  color: blueviolet;
+}
+
 .button__song:hover {
   color: #333;
 }

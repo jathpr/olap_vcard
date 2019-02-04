@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   isPlayerVisible: false,
-  currentTrack: 1,
+  currentTrack: 0,
   isPlaying: false,
   isVideoPlaying: false,
   isInnerState: false,
