@@ -38,9 +38,13 @@ Modal.setAppElement('#root')
 function ArticleItem({ data, popupMessage, locale }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isInfoOpen, setIsInfoOpen] = useState(false)
+  let url = ''
+  let alt = ''
 
-  const url = `https:${data.mainPhoto.fields.file.url}?fm=jpg&fl=progressive&w=300`
-  const alt = data.mainPhoto.fields.description
+  if (data.mainPhoto.fields) {
+    url = `https:${data.mainPhoto.fields.file.url}?fm=jpg&fl=progressive&w=300`
+    alt = data.mainPhoto.fields.description
+  }
 
   function handleOpenModal() {
     setIsModalOpen(true)
@@ -82,6 +86,7 @@ function ArticleItem({ data, popupMessage, locale }: Props) {
         className={`${styles.button__container} button__empty`}
         to={`/articles/${data.urlName}`}>
         <img className={styles.image} src={url} alt={alt} />
+        {/* {styles.image && <img className={styles.image} src={url} alt={alt} />} */}
         <div className={styles.text__container}>
           <h3 className={styles.text__date}>{dateToLocale(data.dateTime, locale)}</h3>
           <h2 className={styles.text__title}>{data.title}</h2>

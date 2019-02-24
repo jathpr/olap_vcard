@@ -33,8 +33,13 @@ type Props = {
 function Article({ data, locale }: Props) {
   if (!data) return null
 
-  const imgUrl = `https:${data.mainPhoto.fields.file.url}?fm=jpg&fl=progressive`
-  const alt = data.mainPhoto.fields.title
+  let imgUrl = ''
+  let alt = ''
+
+  if (data.mainPhoto.fields) {
+    imgUrl = `https:${data.mainPhoto.fields.file.url}?fm=jpg&fl=progressive`
+    alt = data.mainPhoto.fields.title
+  }
 
   return (
     <div className={styles.container}>
