@@ -57,9 +57,11 @@ function Header({ data, className, isPlayerVisible, toggleMenu }: Props) {
         <NavLink className={styles.nav__link} to="/biography" onClick={toggleMenu(false)}>
           {data.biography}
         </NavLink>
-        <NavLink className={styles.nav__link} to="/projects" onClick={toggleMenu(false)}>
-          {data.projects}
-        </NavLink>
+        {data.projects && (
+          <NavLink className={styles.nav__link} to="/projects" onClick={toggleMenu(false)}>
+            {data.projects}
+          </NavLink>
+        )}
         <NavLink className={styles.nav__link} to="/news" onClick={toggleMenu(false)}>
           {data.news}
         </NavLink>
