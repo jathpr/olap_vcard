@@ -13,7 +13,7 @@
     "browser-locale": "^1.0.3",
     "contentful": "^7.0.3",
     "copy-to-clipboard": "^3.0.8",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0-alpha.2",
